@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BartekClean | Profesjonalne Mycie Ciśnieniowe Kostrzyn nad Odrą</title>
+  <meta name="description" content="BartekClean - profesjonalne mycie ciśnieniowe kostki brukowej, elewacji, dachów i podjazdów. Kostrzyn nad Odrą i okolice do 200km. Darmowa wycena.">
+  <meta name="theme-color" content="#070b14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css?v=5">
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader__spinner"></div>
+    <div class="loader__text">BartekClean</div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Canvas FX Overlay -->
+  <canvas id="fx-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="header__logo">
+        <img src="media/logo.png" alt="BartekClean Logo">
+        <div class="header__brand">BartekClean<span>Profesjonalne czyszczenie</span></div>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#o-nas" class="nav__link">O nas</a>
+        <a href="#oferta" class="nav__link">Oferta</a>
+        <a href="#realizacje" class="nav__link">Realizacje</a>
+        <a href="#dlaczego-my" class="nav__link">Dlaczego my?</a>
+        <a href="#kontakt" class="nav__link">Kontakt</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="tel:+48123456789" class="header__cta">Zadzwoń teraz</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero__bg"></div>
+    <div id="hero-particles"></div>
+    <div class="container hero__inner">
+      <div class="reveal">
+        <div class="hero__badge">Kostrzyn nad Odrą • Okolice do 200 km</div>
+        <h1 class="hero__title">Profesjonalne<br><em>mycie ciśnieniowe</em></h1>
+        <p class="hero__desc">Odzyskaj pierwotny blask swojej nieruchomości. Mycie kostki brukowej, elewacji, dachów i podjazdów – nowoczesny sprzęt, doświadczenie i gwarancja efektu.</p>
+        <div class="hero__actions">
+          <a href="#oferta" class="btn btn--primary">Poznaj ofertę →</a>
+          <a href="#kontakt" class="btn btn--ghost">Darmowa wycena</a>
+        </div>
+      </div>
+      <div class="hero__visual reveal reveal--delay-3">
+        <div class="hero__card">
+          <img src="media/kostka-mycie.jpg" alt="Mycie kostki brukowej">
+          <div class="hero__card-info">
+            <h4>Zadowolonych klientów</h4>
+            <div class="num">500+<span>w całym regionie</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="o-nas">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__image reveal reveal--left">
+          <img src="media/podjazd-mycie.jpg" alt="Mycie podjazdu">
+          <div class="about__badge">Bartek<br>Clean</div>
+        </div>
+        <div class="about__text reveal reveal--right">
+          <h2>Czystość bez<br>kompromisów</h2>
+          <p>BartekClean to firma specjalizująca się w profesjonalnym myciu ciśnieniowym powierzchni zewnętrznych. Działamy na terenie <strong>Kostrzyna nad Odrą</strong> i w promieniu do <strong>200 km</strong>, obsługując województwa: lubuskie, zachodniopomorskie, wielkopolskie i dolnośląskie.</p>
+          <p>Naszym celem jest przywracanie pierwotnego blasku każdej powierzchni – od kostki brukowej, przez elewacje, aż po dachy. Każde zlecenie traktujemy indywidualnie, dopasowując metodę czyszczenia do rodzaju zabrudzenia i materiału.</p>
+          <div class="highlight">
+            Czystość to nie tylko estetyka – to także dbanie o trwałość Twojej nieruchomości.
+          </div>
+          <div class="about__stats">
+            <div class="stat">
+              <div class="stat__num" data-counter="200" data-counter-suffix="km">0</div>
+              <div class="stat__label">Zasięg działania</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num" data-counter="500" data-counter-suffix="+">0</div>
+              <div class="stat__label">Wykonanych zleceń</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num" data-counter="100" data-counter-suffix="%">0</div>
+              <div class="stat__label">Zadowolenia klientów</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section--light" id="oferta">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2>Nasza <em>Oferta</em></h2>
+        <p>Kompleksowe usługi czyszczenia dla domu i firmy – od kostki brukowej po dachy</p>
+      </div>
+      <div class="services__grid">
+        <div class="card reveal reveal--delay-1">
+          <div class="card__img"><img src="media/kostka-czyszczenie.jpg" alt="Mycie kostki brukowej"></div>
+          <div class="card__body">
+            <h3 class="card__title">Mycie Kostki Brukowej</h3>
+            <p class="card__text">Profesjonalne czyszczenie kostki brukowej, polbruku i płyt betonowych. Usuwamy mech, glony, plamy olejowe i osady z wielu lat.</p>
+            <span class="card__tag">★ Najpopularniejsze</span>
+          </div>
+        </div>
+        <div class="card reveal reveal--delay-2">
+          <div class="card__img"><img src="media/elewacja-mycie.jpg" alt="Mycie elewacji"></div>
+          <div class="card__body">
+            <h3 class="card__title">Mycie Elewacji</h3>
+            <p class="card__text">Czyszczenie elewacji z nalotów, glonów, kurzu i zabrudzeń atmosferycznych. Bezpieczne metody dla każdego rodzaju tynku.</p>
+            <span class="card__tag">Elewacje</span>
+          </div>
+        </div>
+        <div class="card reveal reveal--delay-3">
+          <div class="card__img"><img src="media/dach-mycie.jpg" alt="Mycie dachu"></div>
+          <div class="card__body">
+            <h3 class="card__title">Mycie Dachów</h3>
+            <p class="card__text">Usuwanie mchu, porostów i nalotów z dachówek, blachodachówki i innych pokryć. Przedłuż żywotność swojego dachu.</p>
+            <span class="card__tag">Dachy</span>
+          </div>
+        </div>
+        <div class="card reveal reveal--delay-1">
+          <div class="card__img"><img src="media/elewacja-mycie2.jpg" alt="Mycie elewacji domu"></div>
+          <div class="card__body">
+            <h3 class="card__title">Mycie Podjazdów i Tarasów</h3>
+            <p class="card__text">Kompleksowe czyszczenie podjazdów, tarasów, chodników i alejek ogrodowych. Przywracamy pierwotny wygląd powierzchni.</p>
+            <span class="card__tag">Podjazdy</span>
+          </div>
+        </div>
+        <div class="card reveal reveal--delay-2">
+          <div class="card__img"><img src="media/kostka-przed-po.jpg" alt="Efekt przed i po myciu"></div>
+          <div class="card__body">
+            <h3 class="card__title">Impregnacja Powierzchni</h3>
+            <p class="card__text">Ochrona kostki brukowej i elewacji przed ponownym zabrudzeniem. Impregnacja hydrofobowa i przeciwglonowa na długie lata.</p>
+            <span class="card__tag">Ochrona</span>
+          </div>
+        </div>
+        <div class="card reveal reveal--delay-3">
+          <div class="card__img"><img src="media/kostka-mycie.jpg" alt="Profesjonalne mycie"></div>
+          <div class="card__body">
+            <h3 class="card__title">Czyszczenie Przemysłowe</h3>
+            <p class="card__text">Usługi dla firm: mycie hal, magazynów, parkingów, placów i powierzchni przemysłowych. Elastyczne terminy i atrakcyjne ceny.</p>
+            <span class="card__tag">B2B</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAROUSEL 1: Canvas 3D Coverflow -->
+  
+
+  
+
+  
+
+  
+
+  <section class="section">
+    <div class="container">
+      <div class="canvas-carousel reveal">
+        <canvas id="canvas-ring">Twoja przeglądarka nie obsługuje Canvas</canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="gallery__grid">
+        <div class="gallery-item reveal reveal--left">
+          <img src="media/kostka-przed-po.jpg" alt="Mycie kostki brukowej - efekt">
+          <div class="gallery-item__overlay">
+            <h4>Mycie kostki brukowej</h4>
+            <p>Kostrzyn nad Odrą</p>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal--right">
+          <img src="media/elewacja-mycie.jpg" alt="Mycie elewacji - efekt">
+          <div class="gallery-item__overlay">
+            <h4>Mycie elewacji budynku</h4>
+            <p>Elewacje</p>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal--left">
+          <img src="media/dach-mycie.jpg" alt="Mycie dachu - efekt">
+          <div class="gallery-item__overlay">
+            <h4>Czyszczenie dachu</h4>
+            <p>Dachy</p>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal--right">
+          <img src="media/podjazd-mycie.jpg" alt="Mycie podjazdu - efekt">
+          <div class="gallery-item__overlay">
+            <h4>Mycie podjazdu i tarasu</h4>
+            <p>Podjazdy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="section" id="dlaczego-my">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2>Dlaczego <em>BartekClean?</em></h2>
+      </div>
+      <div class="values__grid">
+        <div class="value reveal reveal--delay-1">
+          <div class="value__icon">⚡</div>
+          <h3 class="value__title">Nowoczesny sprzęt</h3>
+          <p class="value__text">Profesjonalne myjki wysokociśnieniowe i specjalistyczne urządzenia do czyszczenia każdej powierzchni.</p>
+        </div>
+        <div class="value reveal reveal--delay-2">
+          <div class="value__icon">🛡️</div>
+          <h3 class="value__title">Gwarancja jakości</h3>
+          <p class="value__text">Jeśli efekt Cię nie zadowoli – poprawiamy bez dodatkowych kosztów. Twoja satysfakcja jest priorytetem.</p>
+        </div>
+        <div class="value reveal reveal--delay-3">
+          <div class="value__icon">🚚</div>
+          <h3 class="value__title">Zasięg 200 km</h3>
+          <p class="value__text">Działamy w Kostrzynie nad Odrą i okolicach. Dojedziemy do Ciebie – lubuskie, zachodniopomorskie, wielkopolskie, dolnośląskie.</p>
+        </div>
+        <div class="value reveal reveal--delay-4">
+          <div class="value__icon">💎</div>
+          <h3 class="value__title">Konkurencyjne ceny</h3>
+          <p class="value__text">Transparentny cennik i darmowa wycena. Płacisz tylko za to, co zostało wykonane. Bez ukrytych kosztów.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="kontakt" style="background:linear-gradient(160deg,var(--c-primary) 0%,#0d2137 100%);">
+    <div class="container">
+      <div class="contact__inner">
+        <div class="contact__text reveal">
+          <h2>Zamów darmową <em>wycenę</em></h2>
+          <p>Skontaktuj się z nami, aby omówić zakres prac. Przygotujemy bezpłatną wycenę i doradzimy najlepszą metodę czyszczenia dla Twojej nieruchomości.</p>
+          <div class="contact-details">
+            <div class="contact-row">
+              <div class="contact-row__icon">📍</div>
+              <div>
+                <span class="contact-row__label">Adres</span>
+                <span class="contact-row__value">ul. Moniuszki 5/13, 66-470 Kostrzyn nad Odrą</span>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-row__icon">📞</div>
+              <div>
+                <span class="contact-row__label">Telefon</span>
+                <span class="contact-row__value"><a href="tel:+48123456789">+48 123 456 789</a></span>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-row__icon">✉️</div>
+              <div>
+                <span class="contact-row__label">E-mail</span>
+                <span class="contact-row__value"><a href="mailto:kontakt@bartekclean.pl">kontakt@bartekclean.pl</a></span>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-row__icon">🌐</div>
+              <div>
+                <span class="contact-row__label">Obszar działania</span>
+                <span class="contact-row__value">Lubuskie, Zachodniopomorskie, Wielkopolskie, Dolnośląskie</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form reveal reveal--right">
+          <h3 class="form__title">Zapytaj o wycenę</h3>
+          <form>
+            <div class="form__row">
+              <div class="form__group">
+                <label>Imię</label>
+                <input type="text" placeholder="Jan" required>
+              </div>
+              <div class="form__group">
+                <label>Nazwisko</label>
+                <input type="text" placeholder="Kowalski" required>
+              </div>
+            </div>
+            <div class="form__group">
+              <label>Telefon</label>
+              <input type="tel" placeholder="+48 123 456 789" required>
+            </div>
+            <div class="form__group">
+              <label>Rodzaj usługi</label>
+              <select required>
+                <option value="">Wybierz usługę...</option>
+                <option>Mycie kostki brukowej</option>
+                <option>Mycie elewacji</option>
+                <option>Mycie dachu</option>
+                <option>Mycie podjazdu / tarasu</option>
+                <option>Impregnacja</option>
+                <option>Czyszczenie przemysłowe</option>
+                <option>Inne</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label>Wiadomość</label>
+              <textarea placeholder="Opisz, czego potrzebujesz (np. powierzchnia, rodzaj zabrudzenia, preferowany termin)..." required></textarea>
+            </div>
+            <button type="submit" class="form__submit">Wyślij zapytanie →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 <strong>BartekClean</strong> | ul. Moniuszki 5/13, 66-470 Kostrzyn nad Odrą | Profesjonalne Mycie Ciśnieniowe</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/canvas-effects.js?v=5"></script>
+  <script src="js/canvas-carousel-base.js?v=5"></script>
+        <script src="js/carousel-5-ring.js?v=5"></script>
+  <script src="js/scroll-effects.js?v=5"></script>
+  <script src="js/interactions.js?v=5"></script>
+  <script src="js/main.js?v=5"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+/* ========== CANVAS CAROUSEL UTILITIES ========== */
+const CarouselUtils = {
+  ease: {
+    outCubic: t => 1 - Math.pow(1 - t, 3),
+    outQuart: t => 1 - Math.pow(1 - t, 4),
+    inOutCubic: t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2,
+    outExpo: t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
+    inOutSine: t => -(Math.cos(Math.PI * t) - 1) / 2,
+    outBack: t => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); }
+  },
+
+  preloadImages(srcs) {
+    return Promise.all(srcs.map(src => new Promise((resolve) => {
+      let resolved = false;
+      const img = new Image();
+      const doResolve = (image) => { if (resolved) return; resolved = true; resolve(image); };
+      img.onload = () => doResolve(img);
+      img.onerror = () => {
+        const c = document.createElement('canvas');
+        c.width = 1200; c.height = 800;
+        const ctx = c.getContext('2d');
+        const grd = ctx.createLinearGradient(0,0,1200,800);
+        grd.addColorStop(0,'#0a1628'); grd.addColorStop(1,'#070b14');
+        ctx.fillStyle = grd; ctx.fillRect(0,0,1200,800);
+        ctx.fillStyle = '#00d4ff';
+        ctx.font = 'bold 48px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('BartekClean', 600, 360);
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '24px Inter, sans-serif';
+        ctx.fillText('Realizacja', 600, 410);
+        ctx.strokeStyle = 'rgba(0,212,255,0.2)';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(100,100,1000,600);
+        const placeholder = new Image();
+        placeholder.src = c.toDataURL();
+        placeholder.onload = () => doResolve(placeholder);
+        placeholder.onerror = () => doResolve(img);
+      };
+      setTimeout(() => { if (!resolved) { console.warn('Image timeout:', src); doResolve(img); } }, 8000);
+      img.src = src;
+    })));
+  },
+
+  setupCanvas(selector) {
+    const canvas = document.querySelector(selector);
+    if (!canvas) return null;
+    const container = canvas.parentElement;
+    let w = container ? container.offsetWidth : canvas.offsetWidth;
+    let h = container ? container.offsetHeight : canvas.offsetHeight;
+    // If container uses aspect-ratio, offsetHeight may be 0 initially
+    if (!w || !h || w < 10 || h < 10) {
+      const rect = container ? container.getBoundingClientRect() : canvas.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+    }
+    if (!w || !h || w < 10 || h < 10) {
+      const computed = container ? getComputedStyle(container) : getComputedStyle(canvas);
+      w = parseFloat(computed.width) || window.innerWidth || 800;
+      h = parseFloat(computed.height);
+      // Calculate height from aspect-ratio if needed
+      if (!h || h < 10) {
+        const ar = computed.aspectRatio;
+        if (ar && ar !== 'auto') {
+          const parts = ar.split('/').map(x => parseFloat(x.trim()));
+          if (parts.length === 2 && parts[1] !== 0) {
+            h = w * (parts[1] / parts[0]);
+          }
+        }
+      }
+      if (!h || h < 10) h = w * 0.625; // fallback 16:10
+    }
+    if (!w || !h || w < 10 || h < 10) { w = window.innerWidth || 800; h = window.innerHeight || 600; }
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    canvas.style.width = Math.floor(w) + 'px';
+    canvas.style.height = Math.floor(h) + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.scale(dpr, dpr);
+    return { canvas, ctx, width: w, height: h, dpr };
+  },
+
+  onResize(canvas, callback) {
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const container = canvas.parentElement;
+        let w = container ? container.offsetWidth : canvas.offsetWidth;
+        let h = container ? container.offsetHeight : canvas.offsetHeight;
+        if (!w || !h || w < 10 || h < 10) {
+          const computed = container ? getComputedStyle(container) : getComputedStyle(canvas);
+          w = parseFloat(computed.width) || 800;
+          h = parseFloat(computed.height) || 560;
+        }
+        if (!w || !h || w < 10 || h < 10) { w = 800; h = 560; }
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        canvas.style.width = Math.floor(w) + 'px';
+        canvas.style.height = Math.floor(h) + 'px';
+        const ctx = canvas.getContext('2d');
+        ctx.setTransform(1,0,0,1,0,0);
+        ctx.scale(dpr, dpr);
+        callback(w, h, dpr);
+      }, 150);
+    });
+  },
+
+  lerp(a, b, t) { return a + (b - a) * t; },
+  clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+};
+
+const AnimationLoop = {
+  loops: new Set(),
+  running: false,
+  add(fn) { this.loops.add(fn); if (!this.running) this.start(); },
+  remove(fn) { this.loops.delete(fn); },
+  start() {
+    this.running = true;
+    const tick = () => {
+      this.loops.forEach(fn => fn());
+      if (this.loops.size > 0) requestAnimationFrame(tick);
+      else this.running = false;
+    };
+    requestAnimationFrame(tick);
+  }
+};
