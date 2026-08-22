@@ -200,24 +200,29 @@ class HeroCarousel {
     const screenRatio = this.W / this.H;
     let dw, dh, dx, dy;
 
+    // Padding 12% - pokazuje więcej kontekstu, mniej zoomu
+    const pad = 0.12;
+    const pw = this.W * (1 - pad);
+    const ph = this.H * (1 - pad);
+
     if (screenRatio > ratio) {
-      dw = this.W;
-      dh = this.W / ratio;
-      dx = 0;
+      dw = pw;
+      dh = pw / ratio;
+      dx = (this.W - dw) / 2;
       dy = (this.H - dh) / 2;
     } else {
-      dh = this.H;
-      dw = this.H * ratio;
+      dh = ph;
+      dw = ph * ratio;
       dx = (this.W - dw) / 2;
-      dy = 0;
+      dy = (this.H - dh) / 2;
     }
 
-    // Subtle zoom animation on active image
-    const zoom = this.isTransitioning ? 1 + this.transition * 0.03 : 1;
+    // Bardzo subtelny zoom tylko podczas transition
+    const zoom = this.isTransitioning ? 1 + this.transition * 0.015 : 1;
     dw *= zoom;
     dh *= zoom;
-    dx -= (dw - this.W) / 2;
-    dy -= (dh - this.H) / 2;
+    dx -= (dw - this.W * (1 - pad)) / 2;
+    dy -= (dh - this.H * (1 - pad)) / 2;
 
     ctx.globalAlpha = alpha;
     ctx.drawImage(img, dx, dy, dw, dh);
@@ -226,17 +231,17 @@ class HeroCarousel {
 
   drawRing(ctx) {
     const cx = this.W / 2;
-    const cy = this.H + this.H * 0.30;
-    const outerR = Math.min(this.W, this.H) * 0.70;
-    const innerR = outerR * 0.40;
+    const cy = this.H + this.H * 0.45;   // Ring niżej, mniej widoczny
+    const outerR = Math.min(this.W, this.H) * 0.42;  // Dużo mniejszy
+    const innerR = outerR * 0.52;  // Szersze segmenty
     const segAngle = (Math.PI * 2) / this.images.length;
     const gap = 0.010;
     const count = this.images.length;
 
-    // Clip to bottom area only — allow ring to show from ~35% down
+    // Clip to bottom area only — ring starts lower
     ctx.save();
     ctx.beginPath();
-    ctx.rect(0, this.H * 0.35, this.W, this.H * 0.65);
+    ctx.rect(0, this.H * 0.58, this.W, this.H * 0.42);
     ctx.clip();
 
     // Draw each segment

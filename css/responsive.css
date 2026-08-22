@@ -1,7 +1,7 @@
 /* ========== TABLET ========== */
 @media (max-width:1024px) {
   .hero-carousel__content {
-    top: 50%;
+    top: 42%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -29,7 +29,7 @@
   .hero-title__word--1,
   .hero-title__word--2 {
     font-size:clamp(2.4rem, 10vw, 3.5rem);
-    letter-spacing:-2px;
+    letter-spacing:-1px;
   }
   .hero-title__word--2 {
     margin-top:-2px;

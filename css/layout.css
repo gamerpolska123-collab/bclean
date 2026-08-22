@@ -109,46 +109,45 @@
 .hero-carousel__content {
   position:absolute;
   left:0;
-  top:50%;
+  top:38%;
   transform:translateY(-50%);
   z-index:2;
   pointer-events:auto;
-  max-width:520px;
+  max-width:480px;
   padding-right:24px;
 }
 /* ========== HERO TITLE (EFFECT) ========== */
 .hero-carousel__title {
   display:flex;
   flex-direction:column;
-  line-height:0.9;
-  margin-bottom:20px;
+  line-height:1.05;
+  margin-bottom:24px;
   position:relative;
 }
 
-/* Bartek — biały, cienki, elegancki */
+/* Bartek — biały, elegancki, czytelny */
 .hero-title__word--1 {
   display:block;
-  font-size:clamp(3.2rem, 7vw, 6rem);
-  font-weight:var(--fw-300);
+  font-size:clamp(2rem, 4.5vw, 3.6rem);
+  font-weight:var(--fw-400);
   color:#fff;
-  letter-spacing:-4px;
+  letter-spacing:-1px;
   text-shadow:
-    0 1px 0 rgba(255,255,255,0.1),
-    0 4px 20px rgba(0,0,0,0.4),
-    0 8px 40px rgba(0,0,0,0.3);
+    0 2px 10px rgba(0,0,0,0.5),
+    0 4px 30px rgba(0,0,0,0.3);
   opacity:0;
-  transform:translateY(30px);
+  transform:translateY(20px);
   animation:heroReveal 0.9s cubic-bezier(0.22,1,0.36,1) 0.4s forwards;
 }
 
 /* Clean — gradient cyan, pogrubiony, shimmer */
 .hero-title__word--2 {
   display:block;
-  font-size:clamp(3.2rem, 7vw, 6rem);
-  font-weight:var(--fw-900);
+  font-size:clamp(2.2rem, 5vw, 4rem);
+  font-weight:var(--fw-800);
   font-style:italic;
-  letter-spacing:-2px;
-  margin-top:-4px;
+  letter-spacing:-0.5px;
+  margin-top:2px;
   /* Gradient text */
   background:linear-gradient(
     90deg,
@@ -162,15 +161,14 @@
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
-  /* Multi-layer shadow dla głębi */
-  filter:drop-shadow(0 2px 8px rgba(0,212,255,0.25))
-         drop-shadow(0 0 30px rgba(0,212,255,0.10))
-         drop-shadow(0 0 60px rgba(0,212,255,0.05));
+  /* Subtelny cień */
+  filter:drop-shadow(0 2px 6px rgba(0,212,255,0.20))
+         drop-shadow(0 0 20px rgba(0,212,255,0.08));
   animation:
     heroReveal 0.9s cubic-bezier(0.22,1,0.36,1) 0.6s forwards,
     shimmer 4s linear 1.5s infinite;
   opacity:0;
-  transform:translateY(30px);
+  transform:translateY(20px);
 }
 
 /* Shimmer — animowany gradient */
@@ -199,7 +197,7 @@
   color:rgba(255,255,255,0.35);
   font-size:clamp(0.7rem, 0.9vw, 0.85rem);
   line-height:1.4;
-  margin-bottom:36px;
+  margin-bottom:28px;
   letter-spacing:5px;
   text-transform:uppercase;
   font-weight:var(--fw-400);
