@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BartekClean | Profesjonalne Mycie Ciśnieniowe Kostrzyn nad Odrą</title>
-  <meta name="description" content="BartekClean - profesjonalne mycie ciśnieniowe kostki brukowej, elewacji, dachów i podjazdów. Kostrzyn nad Odrą i okolice do 200km. Darmowa wycena.">
+  <meta name="description" content="BartekClean - profesjonalne mycie ciśnieniowe kostki brukowej, elewacji, dachów i podjazdów. Kostrzyn nad Odrą i okolice do 200km.">
   <meta name="theme-color" content="#070b14">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css?v=5">
+  <link rel="stylesheet" href="css/main.css?v=10">
 </head>
 <body>
   <!-- Loader -->
@@ -20,9 +20,6 @@
 
   <!-- Scroll Progress -->
   <div class="scroll-progress" id="scroll-progress"></div>
-
-  <!-- Canvas FX Overlay -->
-  <canvas id="fx-canvas"></canvas>
 
   <!-- Header -->
   <header class="header" id="header">
@@ -45,30 +42,33 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="hero">
-    <div class="hero__bg"></div>
-    <div id="hero-particles"></div>
-    <div class="container hero__inner">
-      <div class="reveal">
-        <div class="hero__badge">Kostrzyn nad Odrą • Okolice do 200 km</div>
-        <h1 class="hero__title">Profesjonalne<br><em>mycie ciśnieniowe</em></h1>
-        <p class="hero__desc">Odzyskaj pierwotny blask swojej nieruchomości. Mycie kostki brukowej, elewacji, dachów i podjazdów – nowoczesny sprzęt, doświadczenie i gwarancja efektu.</p>
-        <div class="hero__actions">
-          <a href="#oferta" class="btn btn--primary">Poznaj ofertę →</a>
-          <a href="#kontakt" class="btn btn--ghost">Darmowa wycena</a>
-        </div>
-      </div>
-      <div class="hero__visual reveal reveal--delay-3">
-        <div class="hero__card">
-          <img src="media/kostka-mycie.jpg" alt="Mycie kostki brukowej">
-          <div class="hero__card-info">
-            <h4>Zadowolonych klientów</h4>
-            <div class="num">500+<span>w całym regionie</span></div>
+  <!-- HERO: Minimalistyczny full-screen canvas -->
+  <section class="hero-carousel" id="hero">
+    <canvas id="hero-canvas">Twoja przeglądarka nie obsługuje Canvas</canvas>
+    <div class="hero-carousel__overlay">
+      <div class="container hero-carousel__inner">
+        <div class="hero-carousel__content">
+          <div class="hero__badge">Kostrzyn nad Odrą</div>
+          <h1 class="hero-carousel__title">
+            <span class="hero-title__word hero-title__word--1">Bartek</span>
+            <span class="hero-title__word hero-title__word--2">Clean</span>
+          </h1>
+          <p class="hero-carousel__desc">
+            <span class="hero-desc__line"></span>
+            Mycie ciśnieniowe
+          </p>
+          <div class="hero-carousel__actions">
+            <a href="#oferta" class="btn btn--primary">Oferta</a>
+            <a href="#kontakt" class="btn btn--ghost">Wycena</a>
           </div>
+        </div>
+        <div class="hero-carousel__scroll-hint">
+          <span>Przewiń</span>
+          <div class="scroll-hint__line"></div>
         </div>
       </div>
     </div>
+    <div class="hero-carousel__bottom-fade"></div>
   </section>
 
   <!-- About -->
@@ -110,7 +110,7 @@
     <div class="container">
       <div class="section__header reveal">
         <h2>Nasza <em>Oferta</em></h2>
-        <p>Kompleksowe usługi czyszczenia dla domu i firmy – od kostki brukowej po dachy</p>
+        <p>Kompleksowe usługi czyszczenia dla domu i firmy</p>
       </div>
       <div class="services__grid">
         <div class="card reveal reveal--delay-1">
@@ -165,26 +165,13 @@
     </div>
   </section>
 
-  <!-- CAROUSEL 1: Canvas 3D Coverflow -->
-  
-
-  
-
-  
-
-  
-
-  <section class="section">
-    <div class="container">
-      <div class="canvas-carousel reveal">
-        <canvas id="canvas-ring">Twoja przeglądarka nie obsługuje Canvas</canvas>
-      </div>
-    </div>
-  </section>
-
   <!-- Gallery Grid -->
-  <section class="section section--light">
+  <section class="section section--light" id="realizacje">
     <div class="container">
+      <div class="section__header reveal">
+        <h2>Nasze <em>Realizacje</em></h2>
+        <p>Zobacz efekty naszej pracy – przed i po</p>
+      </div>
       <div class="gallery__grid">
         <div class="gallery-item reveal reveal--left">
           <img src="media/kostka-przed-po.jpg" alt="Mycie kostki brukowej - efekt">
@@ -336,11 +323,11 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/canvas-effects.js?v=5"></script>
-  <script src="js/canvas-carousel-base.js?v=5"></script>
-        <script src="js/carousel-5-ring.js?v=5"></script>
-  <script src="js/scroll-effects.js?v=5"></script>
-  <script src="js/interactions.js?v=5"></script>
-  <script src="js/main.js?v=5"></script>
+  <script src="js/canvas-carousel-base.js?v=10"></script>
+  <script src="js/hero-carousel.js?v=10"></script>
+  <script src="js/scroll-effects.js?v=10"></script>
+  <script src="js/interactions.js?v=10"></script>
+  <script src="js/canvas-effects.js?v=10"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 </html>
