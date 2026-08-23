@@ -9,6 +9,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+  // Hero Carousel
+  if (document.getElementById('hero-canvas')) {
+    new HeroCarousel('#hero-canvas', [
+      'media/kostka-przed-po.jpg',
+      'media/elewacja-mycie.jpg',
+      'media/dach-mycie.jpg',
+      'media/podjazd-mycie.jpg',
+      'media/kostka-mycie.jpg',
+      'media/elewacja-mycie2.jpg'
+    ]);
+  }
+
   // Loader first
   Loader.init();
 
