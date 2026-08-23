@@ -521,3 +521,31 @@
   .values__grid { grid-template-columns: 1fr; }
   .section__header h2 { font-size:1.7rem; }
 }
+
+
+/* ========== SVG IKONY (zamiast emoji) ========== */
+.value__icon svg {
+  color: var(--c-accent);
+  filter: drop-shadow(0 2px 8px rgba(0,212,255,0.2));
+}
+.contact-row__icon svg {
+  color: var(--c-accent);
+}
+
+/* ========== H1 HERO FIX ========== */
+.hero-brand__name {
+  margin: 0;
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: var(--fw-800);
+  letter-spacing: -1px;
+  line-height: 1.12;
+  color: #fff;
+}
+.hero-brand__name span {
+  font-style: italic;
+  background: linear-gradient(90deg, #00d4ff 0%, #4de8ff 50%, #00d4ff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

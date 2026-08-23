@@ -7,13 +7,10 @@ const ScrollProgress = {
     window.addEventListener('scroll', () => this.update(), { passive: true });
   },
   update() {
-    const scrollY = window.scrollY;
-    this.elements.forEach(el => {
-      const speed = parseFloat(el.dataset.parallax) || 0.3;
-      const rect = el.getBoundingClientRect();
-      const offset = rect.top * speed * 0.1;
-      el.style.transform = `translateY(${offset}px)`;
-    });
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    this.bar.style.width = progress + '%';
   }
 };
 
@@ -37,13 +34,17 @@ const HeaderScroll = {
 /* ========== REVEAL ON SCROLL ========== */
 const RevealOnScroll = {
   init() {
+    // Respect prefers-reduced-motion
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+      return;
+    }
     const elements = document.querySelectorAll('.reveal');
+    if (!elements.length) return;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          // Optionally unobserve after reveal
-          // observer.unobserve(entry.target);
         }
       });
     }, {
@@ -58,6 +59,10 @@ const RevealOnScroll = {
 const Parallax = {
   elements: [],
   init() {
+    // Respect prefers-reduced-motion
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
     this.elements = document.querySelectorAll('[data-parallax]');
     if (!this.elements.length) return;
     window.addEventListener('scroll', () => this.update(), { passive: true });
@@ -77,6 +82,7 @@ const Parallax = {
 const CounterAnim = {
   init() {
     const counters = document.querySelectorAll('[data-counter]');
+    if (!counters.length) return;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -88,44 +94,61 @@ const CounterAnim = {
     counters.forEach(c => observer.observe(c));
   },
   animate(el) {
-    const target = parseInt(el.dataset.counter);
+    const target = parseInt(el.dataset.counter, 10);
     const suffix = el.dataset.counterSuffix || '';
     const duration = 2000;
     const start = performance.now();
+    const easeOutExpo = t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
     const step = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-      const current = Math.floor(ease * target);
-      el.textContent = current + suffix;
-      if (progress < 1) requestAnimationFrame(step);
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutExpo(progress);
+      el.textContent = Math.floor(eased * target) + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target + suffix;
+      }
     };
     requestAnimationFrame(step);
   }
 };
 
-
-/* ========== LOGO MORPH (hero <-> header) ========== */
-const LogoMorph = {
-  heroBrand: null,
-  headerLogo: null,
-  threshold: 60,
+/* ========== TEXT REVEAL ========== */
+const TextReveal = {
   init() {
-    this.heroBrand = document.getElementById('hero-brand');
-    this.headerLogo = document.getElementById('header-logo');
-    if (!this.heroBrand || !this.headerLogo) return;
-    window.addEventListener('scroll', () => this.update(), { passive: true });
-    this.update();
-  },
-  update() {
-    const scrolled = window.scrollY > this.threshold;
-    if (scrolled) {
-      // Scroll w dół: hero brand znika, header logo pojawia się
-      this.heroBrand.classList.add('is-scrolled');
-      this.headerLogo.classList.add('is-visible');
-    } else {
-      // Scroll do góry: hero brand wraca, header logo znika
-      this.heroBrand.classList.remove('is-scrolled');
-      this.headerLogo.classList.remove('is-visible');
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.text-reveal, .line-reveal, .img-reveal').forEach(el => el.classList.add('active'));
+      return;
     }
+    const elements = document.querySelectorAll('.text-reveal, .line-reveal, .img-reveal');
+    if (!elements.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+    elements.forEach(el => observer.observe(el));
+  }
+};
+
+/* ========== LOGO MORPH (header logo visibility) ========== */
+const LogoMorph = {
+  init() {
+    const logo = document.getElementById('header-logo');
+    if (!logo) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          logo.classList.remove('is-visible');
+        } else {
+          logo.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0 });
+    const hero = document.getElementById('hero');
+    if (hero) observer.observe(hero);
   }
 };

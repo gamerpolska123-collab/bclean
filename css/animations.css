@@ -161,3 +161,84 @@
 .reveal--delay-2 { transition-delay: 0.2s; }
 .reveal--delay-3 { transition-delay: 0.3s; }
 .reveal--delay-4 { transition-delay: 0.4s; }
+
+
+/* ========== PREFERS REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .loader {
+    display: none !important;
+  }
+}
+
+
+/* ========== TEXT REVEAL (clip-path mask) ========== */
+.text-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.text-reveal.active {
+  clip-path: inset(0 0% 0 0);
+}
+
+.text-reveal--up {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.text-reveal--up.active {
+  clip-path: inset(0% 0 0 0);
+}
+
+.text-reveal--down {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.text-reveal--down.active {
+  clip-path: inset(0 0 0% 0);
+}
+
+/* Stagger delays for text reveal groups */
+.text-reveal-group .text-reveal:nth-child(1) { transition-delay: 0s; }
+.text-reveal-group .text-reveal:nth-child(2) { transition-delay: 0.15s; }
+.text-reveal-group .text-reveal:nth-child(3) { transition-delay: 0.3s; }
+.text-reveal-group .text-reveal:nth-child(4) { transition-delay: 0.45s; }
+
+/* ========== LINE REVEAL (underline grow) ========== */
+.line-reveal {
+  position: relative;
+  display: inline-block;
+}
+.line-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--g-accent);
+  border-radius: 2px;
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 12px var(--c-accent-glow);
+}
+.line-reveal.active::after {
+  width: 100%;
+}
+
+/* ========== IMAGE REVEAL (scale + clip) ========== */
+.img-reveal {
+  clip-path: inset(0 0 0 0);
+  transform: scale(1.15);
+  transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.img-reveal.active {
+  clip-path: inset(0 0 0 0);
+  transform: scale(1);
+}

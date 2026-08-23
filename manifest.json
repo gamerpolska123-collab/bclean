@@ -1,0 +1,21 @@
+{
+  "name": "BartekClean - Profesjonalne Mycie Ciśnieniowe",
+  "short_name": "BartekClean",
+  "description": "Profesjonalne mycie ciśnieniowe kostki brukowej, elewacji, dachów i podjazdów.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070b14",
+  "theme_color": "#070b14",
+  "icons": [
+    {
+      "src": "media/logo-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "media/logo-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
