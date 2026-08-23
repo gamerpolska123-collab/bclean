@@ -43,15 +43,28 @@ const SmoothScroll = {
 /* ========== FORM HANDLING ========== */
 const FormHandler = {
   init() {
-    const form = document.querySelector('.form');
+    const form = document.querySelector('.form form');
     if (!form) return;
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      // Basic validation
+      const tel = form.querySelector('input[type="tel"]');
+      if (tel && tel.value.length < 9) {
+        alert('Podaj prawidłowy numer telefonu');
+        tel.focus();
+        return;
+      }
+
       const btn = form.querySelector('.form__submit');
       const original = btn.textContent;
       btn.textContent = 'Wysłano! Dziękujemy ✓';
       btn.style.background = 'linear-gradient(135deg, #00c853, #00e676)';
       btn.disabled = true;
+
+      // TODO: Podłącz backend (Formspree, EmailJS, własny endpoint)
+      console.log('[Form] Dane do wysłania:', new FormData(form));
+
       setTimeout(() => {
         btn.textContent = original;
         btn.style.background = '';
@@ -84,10 +97,12 @@ const MagneticButtons = {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+        btn.dataset.magnetic = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+        btn.style.transform = btn.dataset.magnetic;
       });
       btn.addEventListener('mouseleave', () => {
         btn.style.transform = '';
+        delete btn.dataset.magnetic;
       });
     });
   }

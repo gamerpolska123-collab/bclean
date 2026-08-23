@@ -7,10 +7,13 @@ const ScrollProgress = {
     window.addEventListener('scroll', () => this.update(), { passive: true });
   },
   update() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    this.bar.style.width = progress + '%';
+    const scrollY = window.scrollY;
+    this.elements.forEach(el => {
+      const speed = parseFloat(el.dataset.parallax) || 0.3;
+      const rect = el.getBoundingClientRect();
+      const offset = rect.top * speed * 0.1;
+      el.style.transform = `translateY(${offset}px)`;
+    });
   }
 };
 
@@ -64,7 +67,7 @@ const Parallax = {
     this.elements.forEach(el => {
       const speed = parseFloat(el.dataset.parallax) || 0.3;
       const rect = el.getBoundingClientRect();
-      const offset = (scrollY - rect.top + window.innerHeight) * speed;
+      const offset = rect.top * speed * 0.1;
       el.style.transform = `translateY(${offset}px)`;
     });
   }
@@ -97,5 +100,32 @@ const CounterAnim = {
       if (progress < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
+  }
+};
+
+
+/* ========== LOGO MORPH (hero <-> header) ========== */
+const LogoMorph = {
+  heroBrand: null,
+  headerLogo: null,
+  threshold: 60,
+  init() {
+    this.heroBrand = document.getElementById('hero-brand');
+    this.headerLogo = document.getElementById('header-logo');
+    if (!this.heroBrand || !this.headerLogo) return;
+    window.addEventListener('scroll', () => this.update(), { passive: true });
+    this.update();
+  },
+  update() {
+    const scrolled = window.scrollY > this.threshold;
+    if (scrolled) {
+      // Scroll w dół: hero brand znika, header logo pojawia się
+      this.heroBrand.classList.add('is-scrolled');
+      this.headerLogo.classList.add('is-visible');
+    } else {
+      // Scroll do góry: hero brand wraca, header logo znika
+      this.heroBrand.classList.remove('is-scrolled');
+      this.headerLogo.classList.remove('is-visible');
+    }
   }
 };

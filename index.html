@@ -10,6 +10,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css?v=10">
+  <!-- Open Graph -->
+  <meta property="og:title" content="BartekClean | Profesjonalne Mycie Ciśnieniowe">
+  <meta property="og:description" content="Mycie kostki brukowej, elewacji, dachów i podjazdów. Kostrzyn nad Odrą i okolice do 200km.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bartekclean.pl">
+  <meta property="og:image" content="https://bartekclean.pl/media/kostka-przed-po.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BartekClean | Profesjonalne Mycie Ciśnieniowe">
+  <meta name="twitter:description" content="Mycie kostki brukowej, elewacji, dachów i podjazdów.">
+  <meta name="twitter:image" content="https://bartekclean.pl/media/kostka-przed-po.jpg">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://bartekclean.pl">
 </head>
 <body>
   <!-- Loader -->
@@ -22,13 +37,16 @@
   <div class="scroll-progress" id="scroll-progress"></div>
 
   <!-- Header -->
-  <header class="header" id="header">
+  <header class="header" id="header" role="banner">
     <div class="container header__inner">
-      <a href="#" class="header__logo">
-        <img src="media/logo.png" alt="BartekClean Logo">
-        <div class="header__brand">BartekClean<span>Profesjonalne czyszczenie</span></div>
+      <a href="#" class="header__logo" id="header-logo">
+        <img src="media/logo-icon.png" alt="" class="header__logo-img" loading="eager">
+        <div class="header__logo-text">
+          <span class="header__name">Bartek<span>Clean</span></span>
+          <span class="header__tag">Profesjonalne czyszczenie</span>
+        </div>
       </a>
-      <nav class="nav" id="nav">
+      <nav class="nav" id="nav" aria-label="Główna nawigacja">
         <a href="#o-nas" class="nav__link">O nas</a>
         <a href="#oferta" class="nav__link">Oferta</a>
         <a href="#realizacje" class="nav__link">Realizacje</a>
@@ -44,27 +62,15 @@
 
   <!-- HERO: Minimalistyczny full-screen canvas -->
   <section class="hero-carousel" id="hero">
-    <canvas id="hero-canvas">Twoja przeglądarka nie obsługuje Canvas</canvas>
+    <canvas id="hero-canvas" role="img" aria-label="Galeria realizacji BartekClean — mycie ciśnieniowe">Twoja przeglądarka nie obsługuje Canvas</canvas>
     <div class="hero-carousel__overlay">
       <div class="container hero-carousel__inner">
-        <div class="hero-carousel__content">
-          <div class="hero__badge">Kostrzyn nad Odrą</div>
-          <h1 class="hero-carousel__title">
-            <span class="hero-title__word hero-title__word--1">Bartek</span>
-            <span class="hero-title__word hero-title__word--2">Clean</span>
-          </h1>
-          <p class="hero-carousel__desc">
-            <span class="hero-desc__line"></span>
-            Mycie ciśnieniowe
-          </p>
-          <div class="hero-carousel__actions">
-            <a href="#oferta" class="btn btn--primary">Oferta</a>
-            <a href="#kontakt" class="btn btn--ghost">Wycena</a>
+        <div class="hero-brand" id="hero-brand">
+          <img src="media/logo-icon.png" alt="" class="hero-brand__img" loading="eager">
+          <div class="hero-brand__text">
+            <div class="hero-brand__name">Bartek<span>Clean</span></div>
+            <div class="hero-brand__tag">Profesjonalne czyszczenie</div>
           </div>
-        </div>
-        <div class="hero-carousel__scroll-hint">
-          <span>Przewiń</span>
-          <div class="scroll-hint__line"></div>
         </div>
       </div>
     </div>
@@ -76,7 +82,7 @@
     <div class="container">
       <div class="about__grid">
         <div class="about__image reveal reveal--left">
-          <img src="media/podjazd-mycie.jpg" alt="Mycie podjazdu">
+          <img src="media/podjazd-mycie.jpg" loading="lazy" alt="Mycie podjazdu">
           <div class="about__badge">Bartek<br>Clean</div>
         </div>
         <div class="about__text reveal reveal--right">
@@ -114,7 +120,7 @@
       </div>
       <div class="services__grid">
         <div class="card reveal reveal--delay-1">
-          <div class="card__img"><img src="media/kostka-czyszczenie.jpg" alt="Mycie kostki brukowej"></div>
+          <div class="card__img"><img src="media/kostka-czyszczenie.jpg" loading="lazy" alt="Mycie kostki brukowej"></div>
           <div class="card__body">
             <h3 class="card__title">Mycie Kostki Brukowej</h3>
             <p class="card__text">Profesjonalne czyszczenie kostki brukowej, polbruku i płyt betonowych. Usuwamy mech, glony, plamy olejowe i osady z wielu lat.</p>
@@ -122,7 +128,7 @@
           </div>
         </div>
         <div class="card reveal reveal--delay-2">
-          <div class="card__img"><img src="media/elewacja-mycie.jpg" alt="Mycie elewacji"></div>
+          <div class="card__img"><img src="media/elewacja-mycie.jpg" loading="lazy" alt="Mycie elewacji"></div>
           <div class="card__body">
             <h3 class="card__title">Mycie Elewacji</h3>
             <p class="card__text">Czyszczenie elewacji z nalotów, glonów, kurzu i zabrudzeń atmosferycznych. Bezpieczne metody dla każdego rodzaju tynku.</p>
@@ -130,7 +136,7 @@
           </div>
         </div>
         <div class="card reveal reveal--delay-3">
-          <div class="card__img"><img src="media/dach-mycie.jpg" alt="Mycie dachu"></div>
+          <div class="card__img"><img src="media/dach-mycie.jpg" loading="lazy" alt="Mycie dachu"></div>
           <div class="card__body">
             <h3 class="card__title">Mycie Dachów</h3>
             <p class="card__text">Usuwanie mchu, porostów i nalotów z dachówek, blachodachówki i innych pokryć. Przedłuż żywotność swojego dachu.</p>
@@ -138,7 +144,7 @@
           </div>
         </div>
         <div class="card reveal reveal--delay-1">
-          <div class="card__img"><img src="media/elewacja-mycie2.jpg" alt="Mycie elewacji domu"></div>
+          <div class="card__img"><img src="media/elewacja-mycie2.jpg" loading="lazy" alt="Mycie elewacji domu"></div>
           <div class="card__body">
             <h3 class="card__title">Mycie Podjazdów i Tarasów</h3>
             <p class="card__text">Kompleksowe czyszczenie podjazdów, tarasów, chodników i alejek ogrodowych. Przywracamy pierwotny wygląd powierzchni.</p>
@@ -146,7 +152,7 @@
           </div>
         </div>
         <div class="card reveal reveal--delay-2">
-          <div class="card__img"><img src="media/kostka-przed-po.jpg" alt="Efekt przed i po myciu"></div>
+          <div class="card__img"><img src="media/kostka-przed-po.jpg" loading="lazy" alt="Efekt przed i po myciu"></div>
           <div class="card__body">
             <h3 class="card__title">Impregnacja Powierzchni</h3>
             <p class="card__text">Ochrona kostki brukowej i elewacji przed ponownym zabrudzeniem. Impregnacja hydrofobowa i przeciwglonowa na długie lata.</p>
@@ -154,7 +160,7 @@
           </div>
         </div>
         <div class="card reveal reveal--delay-3">
-          <div class="card__img"><img src="media/kostka-mycie.jpg" alt="Profesjonalne mycie"></div>
+          <div class="card__img"><img src="media/kostka-mycie.jpg" loading="lazy" alt="Profesjonalne mycie"></div>
           <div class="card__body">
             <h3 class="card__title">Czyszczenie Przemysłowe</h3>
             <p class="card__text">Usługi dla firm: mycie hal, magazynów, parkingów, placów i powierzchni przemysłowych. Elastyczne terminy i atrakcyjne ceny.</p>
@@ -276,7 +282,8 @@
         </div>
         <div class="form reveal reveal--right">
           <h3 class="form__title">Zapytaj o wycenę</h3>
-          <form>
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <input type="text" name="_gotcha" style="display:none">
             <div class="form__row">
               <div class="form__group">
                 <label>Imię</label>
@@ -329,5 +336,31 @@
   <script src="js/interactions.js?v=10"></script>
   <script src="js/canvas-effects.js?v=10"></script>
   <script src="js/main.js?v=10"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "BartekClean",
+    "description": "Profesjonalne mycie ciśnieniowe kostki brukowej, elewacji, dachów i podjazdów.",
+    "url": "https://bartekclean.pl",
+    "telephone": "+48123456789",
+    "email": "kontakt@bartekclean.pl",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ul. Moniuszki 5/13",
+      "addressLocality": "Kostrzyn nad Odrą",
+      "postalCode": "66-470",
+      "addressCountry": "PL"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "52.5871",
+      "longitude": "14.6495"
+    },
+    "areaServed": ["Lubuskie", "Zachodniopomorskie", "Wielkopolskie", "Dolnośląskie"],
+    "priceRange": "$$",
+    "openingHours": "Mo-Sa 08:00-18:00"
+  }
+  </script>
 </body>
 </html>

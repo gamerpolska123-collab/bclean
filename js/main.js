@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   RevealOnScroll.init();
   Parallax.init();
   CounterAnim.init();
+  LogoMorph.init();
 
   // Interactions
   MobileMenu.init();
