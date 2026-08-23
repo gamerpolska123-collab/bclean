@@ -24,7 +24,3 @@ build/
 # Environment
 .env
 .env.local
-
-# Temporary
-tmp/
-temp/

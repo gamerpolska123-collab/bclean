@@ -6,19 +6,10 @@
   <title>BartekClean | Profesjonalne Mycie Ciśnieniowe Kostrzyn nad Odrą</title>
   <meta name="description" content="BartekClean - profesjonalne mycie ciśnieniowe kostki brukowej, elewacji, dachów i podjazdów. Kostrzyn nad Odrą i okolice do 200km.">
   <meta name="theme-color" content="#070b14">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="media/logo-icon.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="media/logo-icon.png">
-  <link rel="manifest" href="manifest.json">
-
-  <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/main.min.css?v=11">
+  <link rel="stylesheet" href="css/main.css?v=18">
 
   <!-- Open Graph -->
   <meta property="og:title" content="BartekClean | Profesjonalne Mycie Ciśnieniowe">
@@ -36,23 +27,9 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://bartekclean.pl">
-
-  <!-- Preload critical assets -->
-  <link rel="preload" as="image" href="media/logo-icon.png" fetchpriority="high">
-  <!-- Re-captcha v3 — odkomentuj i wstaw swój SITE_KEY po rejestracji w Google reCAPTCHA Console -->
-  <!-- <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script> -->
-  <!-- <script>
-  grecaptcha.ready(function() {
-    grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', {action: 'submit'}).then(function(token) {
-      document.querySelector('form').insertAdjacentHTML('beforeend', '<input type="hidden" name="recaptcha_token" value="' + token + '">');
-    });
-  });
-  </script> -->
-
 </head>
 <body>
-  <!-- Skip Link -->
-  <a href="#main-content" class="skip-link">Przejdź do treści</a>
+  <a href="#o-nas" class="sr-only">Przejdź do treści</a>
 
   <!-- Loader -->
   <div class="loader" id="loader">
@@ -63,19 +40,11 @@
   <!-- Scroll Progress -->
   <div class="scroll-progress" id="scroll-progress"></div>
 
-  <!-- Cookie Consent Banner -->
-  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Informacja o cookies">
-    <div class="cookie-banner__content">
-      <p>Używamy plików cookies w celu zapewnienia najlepszej jakości usług. Kontynuując przeglądanie strony, zgadzasz się na ich użycie. <a href="polityka-prywatnosci.html" class="cookie-banner__link">Dowiedz się więcej</a></p>
-      <button class="cookie-banner__btn" id="cookie-accept" type="button">Akceptuję</button>
-    </div>
-  </div>
-
   <!-- Header -->
   <header class="header" id="header" role="banner">
     <div class="container header__inner">
       <a href="#" class="header__logo" id="header-logo" aria-label="BartekClean - strona główna">
-        <img src="media/logo-icon.png" alt="Logo BartekClean" class="header__logo-img" loading="eager" width="40" height="40">
+        <img src="media/logo-icon.png" alt="Logo BartekClean" class="header__logo-img" loading="eager" width="40" height="44">
         <div class="header__logo-text">
           <span class="header__name">Bartek<span>Clean</span></span>
           <span class="header__tag">Profesjonalne czyszczenie</span>
@@ -91,250 +60,170 @@
       <button class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav">
         <span></span><span></span><span></span>
       </button>
-      <a href="tel:+48123456789" class="header__cta" aria-label="Zadzwoń do BartekClean">Zadzwoń teraz</a>
+      <a href="tel:+48123456789" class="header__cta">Zadzwoń teraz</a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero-carousel" id="hero" aria-label="Sekcja powitalna">
+  <!-- HERO: Full-screen canvas ring carousel -->
+  <section class="hero-carousel" id="hero" aria-label="Galeria realizacji">
     <canvas id="hero-canvas" role="img" aria-label="Galeria realizacji BartekClean — mycie ciśnieniowe">Twoja przeglądarka nie obsługuje Canvas</canvas>
     <div class="hero-carousel__overlay">
       <div class="container hero-carousel__inner">
         <div class="hero-brand" id="hero-brand">
-          <img src="media/logo-icon.png" alt="" class="hero-brand__img" loading="eager" width="48" height="48" aria-hidden="true">
+          <img src="media/logo-icon.png" alt="" class="hero-brand__img" loading="eager" width="52" height="57" fetchpriority="high">
           <div class="hero-brand__text">
             <h1 class="hero-brand__name">Bartek<span>Clean</span></h1>
-            <p class="hero-brand__tag">Profesjonalne czyszczenie</p>
+            <span class="hero-brand__tag">Profesjonalne czyszczenie</span>
           </div>
         </div>
       </div>
     </div>
     <div class="hero-carousel__bottom-fade"></div>
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <span>Przewiń w dół</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
   </section>
 
-  <!-- Main Content -->
-  <main id="main-content">
-
-    <!-- About -->
-    <section class="section" id="o-nas" aria-labelledby="o-nas-heading">
-      <div class="container">
-        <div class="about__grid">
-          <div class="about__image reveal reveal--left">
-            <picture>
-  <source srcset="media/podjazd-mycie.webp" type="image/webp">
-  <img src="media/podjazd-mycie.jpg" alt="Mycie podjazdu ciśnieniowego - efekt przed i po" width="600" height="400" loading="lazy">
-</picture>
-            <div class="about__badge">Bartek<br>Clean</div>
-          </div>
-          <div class="about__text reveal reveal--right">
-            <h2 id="o-nas-heading" class="text-reveal">Czystość bez<br>kompromisów</h2>
-            <p>BartekClean to firma specjalizująca się w profesjonalnym myciu ciśnieniowym powierzchni zewnętrznych. Działamy na terenie <strong>Kostrzyna nad Odrą</strong> i w promieniu do <strong>200 km</strong>, obsługując województwa: lubuskie, zachodniopomorskie, wielkopolskie i dolnośląskie.</p>
-            <p>Naszym celem jest przywracanie pierwotnego blasku każdej powierzchni – od kostki brukowej, przez elewacje, aż po dachy. Każde zlecenie traktujemy indywidualnie, dopasowując metodę czyszczenia do rodzaju zabrudzenia i materiału.</p>
-            <div class="highlight">
-              Czystość to nie tylko estetyka – to także dbanie o trwałość Twojej nieruchomości.
-            </div>
-            <div class="about__stats">
-              <div class="stat">
-                <div class="stat__num" data-counter="200" data-counter-suffix="km">0</div>
-                <div class="stat__label">Zasięg działania</div>
-              </div>
-              <div class="stat">
-                <div class="stat__num" data-counter="500" data-counter-suffix="+">0</div>
-                <div class="stat__label">Wykonanych zleceń</div>
-              </div>
-              <div class="stat">
-                <div class="stat__num" data-counter="100" data-counter-suffix="%">0</div>
-                <div class="stat__label">Zadowolenia klientów</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section class="section section--light" id="oferta" aria-labelledby="oferta-heading">
-      <div class="container">
-        <div class="section__header reveal">
-          <h2 id="oferta-heading" class="text-reveal">Nasza <em class="line-reveal">Oferta</em></h2>
-          <p>Kompleksowe usługi czyszczenia dla domu i firmy</p>
-        </div>
-        <div class="services__grid">
-          <article class="card reveal reveal--delay-1">
-            <div class="card__img"><picture>
-  <source srcset="media/kostka-czyszczenie.webp" type="image/webp">
-  <img src="media/kostka-czyszczenie.jpg" alt="Profesjonalne mycie kostki brukowej - efektowne czyszczenie" width="400" height="220" loading="lazy">
-</picture></div>
-            <div class="card__body">
-              <h3 class="card__title">Mycie Kostki Brukowej</h3>
-              <p class="card__text">Profesjonalne czyszczenie kostki brukowej, polbruku i płyt betonowych. Usuwamy mech, glony, plamy olejowe i osady z wielu lat.</p>
-              <span class="card__tag">★ Najpopularniejsze</span>
-            </div>
-          </article>
-          <article class="card reveal reveal--delay-2">
-            <div class="card__img"><picture>
-  <source srcset="media/elewacja-mycie.webp" type="image/webp">
-  <img src="media/elewacja-mycie.jpg" alt="Mycie elewacji budynku - czyszczenie tynku" width="400" height="220" loading="lazy">
-</picture></div>
-            <div class="card__body">
-              <h3 class="card__title">Mycie Elewacji</h3>
-              <p class="card__text">Czyszczenie elewacji z nalotów, glonów, kurzu i zabrudzeń atmosferycznych. Bezpieczne metody dla każdego rodzaju tynku.</p>
-              <span class="card__tag">Elewacje</span>
-            </div>
-          </article>
-          <article class="card reveal reveal--delay-3">
-            <div class="card__img"><picture>
-  <source srcset="media/dach-mycie.webp" type="image/webp">
-  <img src="media/dach-mycie.jpg" alt="Mycie dachu - usuwanie mchu i porostów" width="400" height="220" loading="lazy">
-</picture></div>
-            <div class="card__body">
-              <h3 class="card__title">Mycie Dachów</h3>
-              <p class="card__text">Usuwanie mchu, porostów i nalotów z dachówek, blachodachówki i innych pokryć. Przedłuż żywotność swojego dachu.</p>
-              <span class="card__tag">Dachy</span>
-            </div>
-          </article>
-          <article class="card reveal reveal--delay-1">
-            <div class="card__img"><picture>
-  <source srcset="media/elewacja-mycie2.webp" type="image/webp">
-  <img src="media/elewacja-mycie2.jpg" alt="Mycie elewacji domu jednorodzinnego" width="400" height="220" loading="lazy">
-</picture></div>
-            <div class="card__body">
-              <h3 class="card__title">Mycie Podjazdów i Tarasów</h3>
-              <p class="card__text">Kompleksowe czyszczenie podjazdów, tarasów, chodników i alejek ogrodowych. Przywracamy pierwotny wygląd powierzchni.</p>
-              <span class="card__tag">Podjazdy</span>
-            </div>
-          </article>
-          <article class="card reveal reveal--delay-2">
-            <div class="card__img"><picture>
-  <source srcset="media/kostka-przed-po.webp" type="image/webp">
-  <img src="media/kostka-przed-po.jpg" alt="Efekt przed i po impregnacji kostki brukowej" width="400" height="220" loading="lazy">
-</picture></div>
-            <div class="card__body">
-              <h3 class="card__title">Impregnacja Powierzchni</h3>
-              <p class="card__text">Ochrona kostki brukowej i elewacji przed ponownym zabrudzeniem. Impregnacja hydrofobowa i przeciwglonowa na długie lata.</p>
-              <span class="card__tag">Ochrona</span>
-            </div>
-          </article>
-          <article class="card reveal reveal--delay-3">
-            <div class="card__img"><picture>
-  <source srcset="media/kostka-mycie.webp" type="image/webp">
-  <img src="media/kostka-mycie.jpg" alt="Profesjonalne mycie ciśnieniowe - sprzęt" width="400" height="220" loading="lazy">
-</picture></div>
-            <div class="card__body">
-              <h3 class="card__title">Czyszczenie Przemysłowe</h3>
-              <p class="card__text">Usługi dla firm: mycie hal, magazynów, parkingów, placów i powierzchni przemysłowych. Elastyczne terminy i atrakcyjne ceny.</p>
-              <span class="card__tag">B2B</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Gallery -->
-    <section class="section section--light" id="realizacje" aria-labelledby="realizacje-heading">
-      <div class="container">
-        <div class="section__header reveal">
-          <h2 id="realizacje-heading" class="text-reveal">Nasze <em class="line-reveal">Realizacje</em></h2>
-          <p>Zobacz efekty naszej pracy – przed i po</p>
-        </div>
-        <div class="gallery__grid">
-          <figure class="gallery-item reveal reveal--left">
-            <picture>
-  <source srcset="media/kostka-przed-po.webp" type="image/webp">
-  <img src="media/kostka-przed-po.jpg" alt="Mycie kostki brukowej - efekt przed i po" width="600" height="400" loading="lazy">
-</picture>
-            <figcaption class="gallery-item__overlay">
-              <h4>Mycie kostki brukowej</h4>
-              <p>Kostrzyn nad Odrą</p>
-            </figcaption>
-          </figure>
-          <figure class="gallery-item reveal reveal--right">
-            <picture>
-  <source srcset="media/elewacja-mycie.webp" type="image/webp">
-  <img src="media/elewacja-mycie.jpg" alt="Mycie elewacji budynku - efekt" width="600" height="400" loading="lazy">
-</picture>
-            <figcaption class="gallery-item__overlay">
-              <h4>Mycie elewacji budynku</h4>
-              <p>Elewacje</p>
-            </figcaption>
-          </figure>
-          <figure class="gallery-item reveal reveal--left">
-            <picture>
-  <source srcset="media/dach-mycie.webp" type="image/webp">
-  <img src="media/dach-mycie.jpg" alt="Czyszczenie dachu - efekt" width="600" height="400" loading="lazy">
-</picture>
-            <figcaption class="gallery-item__overlay">
-              <h4>Czyszczenie dachu</h4>
-              <p>Dachy</p>
-            </figcaption>
-          </figure>
-          <figure class="gallery-item reveal reveal--right">
-            <picture>
-  <source srcset="media/podjazd-mycie.webp" type="image/webp">
-  <img src="media/podjazd-mycie.jpg" alt="Mycie podjazdu i tarasu - efekt" width="600" height="400" loading="lazy">
-</picture>
-            <figcaption class="gallery-item__overlay">
-              <h4>Mycie podjazdu i tarasu</h4>
-              <p>Podjazdy</p>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why Us -->
-      <!-- Before/After Slider -->
-  <section class="ba-section" id="efekty" aria-labelledby="efekty-heading">
+  <!-- About -->
+  <section class="section" id="o-nas">
     <div class="container">
-      <div class="ba-section__header reveal">
-        <h2 id="efekty-heading" class="text-reveal">Efekty <em class="line-reveal">Przed i Po</em></h2>
-        <p>Przesuń suwak, aby zobaczyć różnicę</p>
-      </div>
-      <div class="ba-slider__grid">
-        <div class="ba-slider-wrapper reveal reveal--delay-1">
-          <div class="ba-slider" role="img" aria-label="Porównanie efektu mycia kostki brukowej - przed i po">
-            <picture>
-  <source srcset="media/kostka-czyszczenie.webp" type="image/webp">
-  <img src="media/kostka-czyszczenie.jpg" alt="Kostka brukowa przed czyszczeniem" width="600" height="375" class="ba-slider__image ba-slider__after">
-</picture>
-            <picture>
-  <source srcset="media/kostka-przed-po.webp" type="image/webp">
-  <img src="media/kostka-przed-po.jpg" alt="Kostka brukowa po czyszczeniu" width="600" height="375" class="ba-slider__image ba-slider__before">
-</picture>
-            <span class="ba-slider__label ba-slider__label--before">Przed</span>
-            <span class="ba-slider__label ba-slider__label--after">Po</span>
-            <div class="ba-slider__divider"></div>
-            <div class="ba-slider__handle" aria-label="Suwak przed i po">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
+      <div class="about__grid">
+        <div class="about__image reveal reveal--left">
+          <img src="media/podjazd-mycie.jpg" loading="lazy" alt="Mycie podjazdu ciśnieniem wodnym" width="1000" height="1000">
+          <div class="about__badge">Bartek<br>Clean</div>
+        </div>
+        <div class="about__text reveal reveal--right">
+          <h2>Czystość bez<br>kompromisów</h2>
+          <p>BartekClean to firma specjalizująca się w profesjonalnym myciu ciśnieniowym powierzchni zewnętrznych. Działamy na terenie <strong>Kostrzyna nad Odrą</strong> i w promieniu do <strong>200 km</strong>, obsługując województwa: lubuskie, zachodniopomorskie, wielkopolskie i dolnośląskie.</p>
+          <p>Naszym celem jest przywracanie pierwotnego blasku każdej powierzchni – od kostki brukowej, przez elewacje, aż po dachy. Każde zlecenie traktujemy indywidualnie, dopasowując metodę czyszczenia do rodzaju zabrudzenia i materiału.</p>
+          <div class="highlight">
+            Czystość to nie tylko estetyka – to także dbanie o trwałość Twojej nieruchomości.
           </div>
-          <div class="ba-slider__caption">
-            <h4>Mycie kostki brukowej</h4>
-            <p>Kostrzyn nad Odrą — usunięcie mchu i glonów</p>
+          <div class="about__stats">
+            <div class="stat">
+              <div class="stat__num" data-counter="200" data-counter-suffix="km">0</div>
+              <div class="stat__label">Zasięg działania</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num" data-counter="500" data-counter-suffix="+">0</div>
+              <div class="stat__label">Wykonanych zleceń</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num" data-counter="100" data-counter-suffix="%">0</div>
+              <div class="stat__label">Zadowolenia klientów</div>
+            </div>
           </div>
         </div>
-        <div class="ba-slider-wrapper reveal reveal--delay-2">
-          <div class="ba-slider" role="img" aria-label="Porównanie efektu mycia elewacji - przed i po">
-            <picture>
-  <source srcset="media/elewacja-mycie2.webp" type="image/webp">
-  <img src="media/elewacja-mycie2.jpg" alt="Elewacja przed czyszczeniem" width="600" height="375" class="ba-slider__image ba-slider__after">
-</picture>
-            <picture>
-  <source srcset="media/elewacja-mycie.webp" type="image/webp">
-  <img src="media/elewacja-mycie.jpg" alt="Elewacja po czyszczeniu" width="600" height="375" class="ba-slider__image ba-slider__before">
-</picture>
-            <span class="ba-slider__label ba-slider__label--before">Przed</span>
-            <span class="ba-slider__label ba-slider__label--after">Po</span>
-            <div class="ba-slider__divider"></div>
-            <div class="ba-slider__handle" aria-label="Suwak przed i po">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section--light" id="oferta">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2>Nasza <em>Oferta</em></h2>
+        <p>Kompleksowe usługi czyszczenia dla domu i firmy</p>
+      </div>
+      <div class="services__grid">
+        <div class="card reveal reveal--delay-1">
+          <div class="card__img"><img src="media/kostka-czyszczenie.jpg" loading="lazy" alt="Mycie kostki brukowej" width="880" height="495"></div>
+          <div class="card__body">
+            <h3 class="card__title">Mycie Kostki Brukowej</h3>
+            <p class="card__text">Profesjonalne czyszczenie kostki brukowej, polbruku i płyt betonowych. Usuwamy mech, glony, plamy olejowe i osady z wielu lat.</p>
+            <span class="card__tag">★ Najpopularniejsze</span>
+          </div>
+        </div>
+        <div class="card reveal reveal--delay-2">
+          <div class="card__img"><img src="media/elewacja-mycie.jpg" loading="lazy" alt="Mycie elewacji budynku" width="400" height="400"></div>
+          <div class="card__body">
+            <h3 class="card__title">Mycie Elewacji</h3>
+            <p class="card__text">Czyszczenie elewacji z nalotów, glonów, kurzu i zabrudzeń atmosferycznych. Bezpieczne metody dla każdego rodzaju tynku.</p>
+            <span class="card__tag">Elewacje</span>
+          </div>
+        </div>
+        <div class="card reveal reveal--delay-3">
+          <div class="card__img"><img src="media/dach-mycie.jpg" loading="lazy" alt="Mycie dachu" width="400" height="400"></div>
+          <div class="card__body">
+            <h3 class="card__title">Mycie Dachów</h3>
+            <p class="card__text">Usuwanie mchu, porostów i nalotów z dachówek, blachodachówki i innych pokryć. Przedłuż żywotność swojego dachu.</p>
+            <span class="card__tag">Dachy</span>
+          </div>
+        </div>
+        <div class="card reveal reveal--delay-1">
+          <div class="card__img"><img src="media/elewacja-mycie2.jpg" loading="lazy" alt="Mycie elewacji domu jednorodzinnego" width="740" height="486"></div>
+          <div class="card__body">
+            <h3 class="card__title">Mycie Podjazdów i Tarasów</h3>
+            <p class="card__text">Kompleksowe czyszczenie podjazdów, tarasów, chodników i alejek ogrodowych. Przywracamy pierwotny wygląd powierzchni.</p>
+            <span class="card__tag">Podjazdy</span>
+          </div>
+        </div>
+        <div class="card reveal reveal--delay-2">
+          <div class="card__img"><img src="media/kostka-przed-po.jpg" loading="lazy" alt="Efekt przed i po myciu kostki brukowej" width="1600" height="750"></div>
+          <div class="card__body">
+            <h3 class="card__title">Impregnacja Powierzchni</h3>
+            <p class="card__text">Ochrona kostki brukowej i elewacji przed ponownym zabrudzeniem. Impregnacja hydrofobowa i przeciwglonowa na długie lata.</p>
+            <span class="card__tag">Ochrona</span>
+          </div>
+        </div>
+        <div class="card reveal reveal--delay-3">
+          <div class="card__img"><img src="media/kostka-mycie.jpg" loading="lazy" alt="Profesjonalne mycie ciśnieniowe" width="1313" height="876"></div>
+          <div class="card__body">
+            <h3 class="card__title">Czyszczenie Przemysłowe</h3>
+            <p class="card__text">Usługi dla firm: mycie hal, magazynów, parkingów, placów i powierzchni przemysłowych. Elastyczne terminy i atrakcyjne ceny.</p>
+            <span class="card__tag">B2B</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="section section--light" id="realizacje">
+    <div class="container">
+      <div class="section__header reveal">
+        <h2>Nasze <em>Realizacje</em></h2>
+        <p>Zobacz efekty naszej pracy – przed i po</p>
+      </div>
+      <div class="gallery__grid">
+        <div class="ba-slider reveal reveal--left" data-ba>
+          <div class="ba-slider__image ba-slider__image--after">
+            <img src="media/kostka-przed-po.jpg" alt="Efekt po myciu kostki brukowej" width="1600" height="750" loading="lazy">
+          </div>
+          <div class="ba-slider__image ba-slider__image--before" style="width: 50%;">
+            <img src="media/kostka-przed-po.jpg" alt="Stan przed myciem kostki brukowej" width="1600" height="750" loading="lazy" style="filter: grayscale(65%) brightness(0.5) contrast(1.15);">
+          </div>
+          <div class="ba-slider__handle" style="left: 50%;">
+            <div class="ba-slider__handle-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="15 18 9 12 15 6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polyline points="9 18 15 12 9 6"/></svg>
             </div>
           </div>
-          <div class="ba-slider__caption">
-            <h4>Mycie elewacji</h4>
-            <p>Usunięcie nalotów i zabrudzeń atmosferycznych</p>
+          <div class="ba-slider__labels">
+            <span class="ba-slider__label ba-slider__label--before">Przed</span>
+            <span class="ba-slider__label ba-slider__label--after">Po</span>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal--right">
+          <img src="media/elewacja-mycie.jpg" alt="Mycie elewacji budynku - efekt" width="400" height="400">
+          <div class="gallery-item__overlay">
+            <h4>Mycie elewacji budynku</h4>
+            <p>Elewacje</p>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal--left">
+          <img src="media/dach-mycie.jpg" alt="Czyszczenie dachu - efekt" width="400" height="400">
+          <div class="gallery-item__overlay">
+            <h4>Czyszczenie dachu</h4>
+            <p>Dachy</p>
+          </div>
+        </div>
+        <div class="gallery-item reveal reveal--right">
+          <img src="media/podjazd-mycie.jpg" alt="Mycie podjazdu i tarasu - efekt" width="1000" height="1000">
+          <div class="gallery-item__overlay">
+            <h4>Mycie podjazdu i tarasu</h4>
+            <p>Podjazdy</p>
           </div>
         </div>
       </div>
@@ -342,258 +231,146 @@
   </section>
 
   <!-- Why Us -->
-  <section class="section" id="dlaczego-my" aria-labelledby="dlaczego-my-heading">
-      <div class="container">
-        <div class="section__header reveal">
-          <h2 id="dlaczego-my-heading" class="text-reveal">Dlaczego <em class="line-reveal">BartekClean?</em></h2>
-        </div>
-        <div class="values__grid">
-          <div class="value reveal reveal--delay-1">
-            <div class="value__icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            </div>
-            <h3 class="value__title">Nowoczesny sprzęt</h3>
-            <p class="value__text">Profesjonalne myjki wysokociśnieniowe i specjalistyczne urządzenia do czyszczenia każdej powierzchni.</p>
-          </div>
-          <div class="value reveal reveal--delay-2">
-            <div class="value__icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3 class="value__title">Gwarancja jakości</h3>
-            <p class="value__text">Jeśli efekt Cię nie zadowoli – poprawiamy bez dodatkowych kosztów. Twoja satysfakcja jest priorytetem.</p>
-          </div>
-          <div class="value reveal reveal--delay-3">
-            <div class="value__icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            </div>
-            <h3 class="value__title">Zasięg 200 km</h3>
-            <p class="value__text">Działamy w Kostrzynie nad Odrą i okolicach. Dojedziemy do Ciebie – lubuskie, zachodniopomorskie, wielkopolskie, dolnośląskie.</p>
-          </div>
-          <div class="value reveal reveal--delay-4">
-            <div class="value__icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            </div>
-            <h3 class="value__title">Konkurencyjne ceny</h3>
-            <p class="value__text">Transparentny cennik i darmowa wycena. Płacisz tylko za to, co zostało wykonane. Bez ukrytych kosztów.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section" id="kontakt" style="background:linear-gradient(160deg,var(--c-primary) 0%,#0d2137 100%);" aria-labelledby="kontakt-heading">
-      <div class="container">
-        <div class="contact__inner">
-          <div class="contact__text reveal">
-            <h2 id="kontakt-heading" class="text-reveal">Zamów darmową <em class="line-reveal">wycenę</em></h2>
-            <p>Skontaktuj się z nami, aby omówić zakres prac. Przygotujemy bezpłatną wycenę i doradzimy najlepszą metodę czyszczenia dla Twojej nieruchomości.</p>
-            <div class="contact-details">
-              <div class="contact-row">
-                <div class="contact-row__icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                </div>
-                <div>
-                  <span class="contact-row__label">Adres</span>
-                  <span class="contact-row__value">ul. Moniuszki 5/13, 66-470 Kostrzyn nad Odrą</span>
-                </div>
-              </div>
-              <div class="contact-row">
-                <div class="contact-row__icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                </div>
-                <div>
-                  <span class="contact-row__label">Telefon</span>
-                  <span class="contact-row__value"><a href="tel:+48123456789" aria-label="Zadzwoń pod numer +48 123 456 789">+48 123 456 789</a></span>
-                </div>
-              </div>
-              <div class="contact-row">
-                <div class="contact-row__icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </div>
-                <div>
-                  <span class="contact-row__label">E-mail</span>
-                  <span class="contact-row__value"><a href="mailto:kontakt@bartekclean.pl" aria-label="Wyślij e-mail na kontakt@bartekclean.pl">kontakt@bartekclean.pl</a></span>
-                </div>
-              </div>
-              <div class="contact-row">
-                <div class="contact-row__icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                </div>
-                <div>
-                  <span class="contact-row__label">Obszar działania</span>
-                  <span class="contact-row__value">Lubuskie, Zachodniopomorskie, Wielkopolskie, Dolnośląskie</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form reveal reveal--right">
-            <h3 class="form__title">Zapytaj o wycenę</h3>
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
-              <input type="text" name="_gotcha" style="display:none" tabindex="-1" aria-hidden="true">
-              <div class="form__row">
-                <div class="form__group">
-                  <label for="form-imie">Imię <span aria-label="wymagane">*</span></label>
-                  <input type="text" id="form-imie" name="imie" placeholder="Jan" required aria-required="true">
-                </div>
-                <div class="form__group">
-                  <label for="form-nazwisko">Nazwisko <span aria-label="wymagane">*</span></label>
-                  <input type="text" id="form-nazwisko" name="nazwisko" placeholder="Kowalski" required aria-required="true">
-                </div>
-              </div>
-              <div class="form__group">
-                <label for="form-telefon">Telefon <span aria-label="wymagane">*</span></label>
-                <input type="tel" id="form-telefon" name="telefon" placeholder="+48 123 456 789" required aria-required="true">
-              </div>
-              <div class="form__group">
-                <label for="form-email">E-mail</label>
-                <input type="email" id="form-email" name="email" placeholder="jan@example.pl">
-              </div>
-              <div class="form__group">
-                <label for="form-usluga">Rodzaj usługi <span aria-label="wymagane">*</span></label>
-                <select id="form-usluga" name="usluga" required aria-required="true">
-                  <option value="">Wybierz usługę...</option>
-                  <option>Mycie kostki brukowej</option>
-                  <option>Mycie elewacji</option>
-                  <option>Mycie dachu</option>
-                  <option>Mycie podjazdu / tarasu</option>
-                  <option>Impregnacja</option>
-                  <option>Czyszczenie przemysłowe</option>
-                  <option>Inne</option>
-                </select>
-              </div>
-              <div class="form__group">
-                <label for="form-wiadomosc">Wiadomość <span aria-label="wymagane">*</span></label>
-                <textarea id="form-wiadomosc" name="wiadomosc" placeholder="Opisz, czego potrzebujesz (np. powierzchnia, rodzaj zabrudzenia, preferowany termin)..." required aria-required="true"></textarea>
-              </div>
-              <div class="form__group form__group--rodo">
-                <label class="form__checkbox">
-                  <input type="checkbox" name="rodo" required aria-required="true">
-                  <span class="form__checkmark"></span>
-                  <span class="form__checkbox-text">Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z <a href="polityka-prywatnosci.html" target="_blank">Polityką Prywatności</a>. Administratorem danych jest BartekClean, ul. Moniuszki 5/13, 66-470 Kostrzyn nad Odrą.</span>
-                </label>
-              </div>
-              <button type="submit" class="form__submit">Wyślij zapytanie →</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Sticky Mobile CTA -->
-  <a href="tel:+48123456789" class="sticky-cta" aria-label="Zadzwoń teraz">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    <span>Zadzwoń teraz</span>
-  </a>
-
-    <!-- Google Reviews Widget -->
-  <section class="section" id="opinie" aria-labelledby="opinie-heading">
+  <section class="section" id="dlaczego-my">
     <div class="container">
       <div class="section__header reveal">
-        <h2 id="opinie-heading">Co mówią <em>nasz klienci</em></h2>
-        <p>Prawdziwe opinie z Google Maps</p>
+        <h2>Dlaczego <em>BartekClean?</em></h2>
       </div>
-      <div class="reviews__grid" id="reviews-container">
-        <!-- Reviews will be loaded here via Google Places API -->
-        <div class="review-card review-card--placeholder">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__text">"BartekClean zrobił kawał dobrej roboty. Kostka wygląda jak nowa, a cena była bardzo konkurencyjna. Polecam każdemu!"</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">JK</div>
-            <div>
-              <div class="review-card__name">Jan Kowalski</div>
-              <div class="review-card__date">lipiec 2026</div>
-            </div>
-          </div>
+      <div class="values__grid">
+        <div class="value reveal reveal--delay-1">
+          <div class="value__icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <h3 class="value__title">Nowoczesny sprzęt</h3>
+          <p class="value__text">Profesjonalne myjki wysokociśnieniowe i specjalistyczne urządzenia do czyszczenia każdej powierzchni.</p>
         </div>
-        <div class="review-card review-card--placeholder">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__text">"Profesjonalne podejście, punktualność i świetny efekt. Elewacja domu po czyszczeniu wygląda rewelacyjnie. Na pewno skorzystam ponownie."</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">AN</div>
-            <div>
-              <div class="review-card__name">Anna Nowak</div>
-              <div class="review-card__date">czerwiec 2026</div>
-            </div>
-          </div>
+        <div class="value reveal reveal--delay-2">
+          <div class="value__icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3 class="value__title">Gwarancja jakości</h3>
+          <p class="value__text">Jeśli efekt Cię nie zadowoli – poprawiamy bez dodatkowych kosztów. Twoja satysfakcja jest priorytetem.</p>
         </div>
-        <div class="review-card review-card--placeholder">
-          <div class="review-card__stars">★★★★★</div>
-          <p class="review-card__text">"Szybka wycena, fachowe doradztwo i wykonanie na najwyższym poziomie. Dach po czyszczeniu jest jak nowy. Bardzo polecam!"</p>
-          <div class="review-card__author">
-            <div class="review-card__avatar">PW</div>
-            <div>
-              <div class="review-card__name">Piotr Wiśniewski</div>
-              <div class="review-card__date">maj 2026</div>
-            </div>
-          </div>
+        <div class="value reveal reveal--delay-3">
+          <div class="value__icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <h3 class="value__title">Zasięg 200 km</h3>
+          <p class="value__text">Działamy w Kostrzynie nad Odrą i okolicach. Dojedziemy do Ciebie – lubuskie, zachodniopomorskie, wielkopolskie, dolnośląskie.</p>
+        </div>
+        <div class="value reveal reveal--delay-4">
+          <div class="value__icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 13L2 9l4-6z"/><path d="M11 3L8 9l4 13 4-13-3-6z"/></svg></div>
+          <h3 class="value__title">Konkurencyjne ceny</h3>
+          <p class="value__text">Transparentny cennik i darmowa wycena. Płacisz tylko za to, co zostało wykonane. Bez ukrytych kosztów.</p>
         </div>
       </div>
-      <div class="reviews__cta reveal">
-        <a href="https://g.page/bartekclean/review" target="_blank" rel="noopener" class="btn btn--ghost">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-          Zobacz wszystkie opinie na Google
-        </a>
-      </div>
-      <!-- 
-      INSTRUKCJA KONFIGURACJI GOOGLE REVIEWS API:
-      1. Utwórz projekt w Google Cloud Console
-      2. Włącz Places API (New)
-      3. Uzyskaj API Key
-      4. Znajdź Place ID swojej firmy: https://developers.google.com/maps/documentation/places/web-service/place-id
-      5. Zamień poniższy skrypt na aktywny i wstaw swój API_KEY oraz PLACE_ID
-      -->
-      <!-- <script>
-      (function() {
-        const API_KEY = 'YOUR_GOOGLE_PLACES_API_KEY';
-        const PLACE_ID = 'YOUR_PLACE_ID';
-        const container = document.getElementById('reviews-container');
+    </div>
+  </section>
 
-        fetch(`https://places.googleapis.com/v1/places/${PLACE_ID}?fields=reviews&key=${API_KEY}`)
-          .then(r => r.json())
-          .then(data => {
-            if (!data.reviews) return;
-            container.innerHTML = data.reviews.slice(0, 6).map(r => `
-              <div class="review-card">
-                <div class="review-card__stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
-                <p class="review-card__text">"${r.text.text.substring(0, 200)}${r.text.text.length > 200 ? '...' : ''}"</p>
-                <div class="review-card__author">
-                  <div class="review-card__avatar">${r.authorAttribution.displayName.split(' ').map(n => n[0]).join('').substring(0,2)}</div>
-                  <div>
-                    <div class="review-card__name">${r.authorAttribution.displayName}</div>
-                    <div class="review-card__date">${new Date(r.publishTime).toLocaleDateString('pl-PL', {year:'numeric', month:'long'})}</div>
-                  </div>
-                </div>
+  <!-- Contact -->
+  <section class="section" id="kontakt" style="background:linear-gradient(160deg,var(--c-primary) 0%,#0d2137 100%);">
+    <div class="container">
+      <div class="contact__inner">
+        <div class="contact__text reveal">
+          <h2>Zamów darmową <em>wycenę</em></h2>
+          <p>Skontaktuj się z nami, aby omówić zakres prac. Przygotujemy bezpłatną wycenę i doradzimy najlepszą metodę czyszczenia dla Twojej nieruchomości.</p>
+          <div class="contact-details">
+            <div class="contact-row">
+              <div class="contact-row__icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+              <div>
+                <span class="contact-row__label">Adres</span>
+                <span class="contact-row__value">ul. Moniuszki 5/13, 66-470 Kostrzyn nad Odrą</span>
               </div>
-            `).join('');
-          })
-          .catch(err => console.warn('[Reviews] API fetch failed:', err));
-      })();
-      </script> -->
+            </div>
+            <div class="contact-row">
+              <div class="contact-row__icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+              <div>
+                <span class="contact-row__label">Telefon</span>
+                <span class="contact-row__value"><a href="tel:+48123456789">+48 123 456 789</a></span>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-row__icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div>
+                <span class="contact-row__label">E-mail</span>
+                <span class="contact-row__value"><a href="mailto:kontakt@bartekclean.pl">kontakt@bartekclean.pl</a></span>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-row__icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+              <div>
+                <span class="contact-row__label">Obszar działania</span>
+                <span class="contact-row__value">Lubuskie, Zachodniopomorskie, Wielkopolskie, Dolnośląskie</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form reveal reveal--right">
+          <h3 class="form__title">Zapytaj o wycenę</h3>
+          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" aria-hidden="true">
+            <div class="form__row">
+              <div class="form__group">
+                <label for="form-imie">Imię</label>
+                <input type="text" id="form-imie" name="imie" placeholder="Jan" required>
+              </div>
+              <div class="form__group">
+                <label for="form-nazwisko">Nazwisko</label>
+                <input type="text" id="form-nazwisko" name="nazwisko" placeholder="Kowalski" required>
+              </div>
+            </div>
+            <div class="form__group">
+              <label for="form-telefon">Telefon</label>
+              <input type="tel" id="form-telefon" name="telefon" placeholder="+48 123 456 789" required>
+            </div>
+            <div class="form__group">
+              <label for="form-usluga">Rodzaj usługi</label>
+              <select id="form-usluga" name="usluga" required>
+                <option value="">Wybierz usługę...</option>
+                <option>Mycie kostki brukowej</option>
+                <option>Mycie elewacji</option>
+                <option>Mycie dachu</option>
+                <option>Mycie podjazdu / tarasu</option>
+                <option>Impregnacja</option>
+                <option>Czyszczenie przemysłowe</option>
+                <option>Inne</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label for="form-wiadomosc">Wiadomość</label>
+              <textarea id="form-wiadomosc" name="wiadomosc" placeholder="Opisz, czego potrzebujesz (np. powierzchnia, rodzaj zabrudzenia, preferowany termin)..." required></textarea>
+            </div>
+            <div class="form__group form__group--rodo">
+              <label class="rodo-label">
+                <input type="checkbox" id="form-rodo" name="rodo" required>
+                <span class="rodo-check"></span>
+                <span class="rodo-text">Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z <a href="#" class="rodo-link" data-open-modal="privacy">Polityką Prywatności</a>. Administratorem danych jest BartekClean, ul. Moniuszki 5/13, 66-470 Kostrzyn nad Odrą.</span>
+              </label>
+            </div>
+            <button type="submit" class="form__submit">Wyślij zapytanie →</button>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer" role="contentinfo">
+  <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
           <div class="footer__logo">
-            <img src="media/logo-icon.png" alt="" width="32" height="32" aria-hidden="true">
-            <span>Bartek<strong>Clean</strong></span>
+            <img src="media/logo-icon.png" alt="" width="32" height="35" loading="lazy">
+            <span>Bartek<span>Clean</span></span>
           </div>
           <p class="footer__desc">Profesjonalne mycie ciśnieniowe kostki brukowej, elewacji, dachów i podjazdów. Kostrzyn nad Odrą i okolice.</p>
         </div>
         <div class="footer__links">
           <h4>Nawigacja</h4>
-          <ul>
-            <li><a href="#o-nas">O nas</a></li>
-            <li><a href="#oferta">Oferta</a></li>
-            <li><a href="#realizacje">Realizacje</a></li>
-            <li><a href="#dlaczego-my">Dlaczego my?</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
-          </ul>
+          <a href="#o-nas">O nas</a>
+          <a href="#oferta">Oferta</a>
+          <a href="#realizacje">Realizacje</a>
+          <a href="#dlaczego-my">Dlaczego my?</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+        <div class="footer__links">
+          <h4>Informacje</h4>
+          <a href="#" data-open-modal="privacy">Polityka Prywatności</a>
+          <a href="#" data-open-modal="cookies">Polityka Cookies</a>
         </div>
         <div class="footer__contact">
           <h4>Kontakt</h4>
@@ -601,49 +378,20 @@
           <p><a href="tel:+48123456789">+48 123 456 789</a></p>
           <p><a href="mailto:kontakt@bartekclean.pl">kontakt@bartekclean.pl</a></p>
         </div>
-        <div class="footer__hours">
-          <h4>Godziny otwarcia</h4>
-          <p>Pon – Pt: 08:00 – 18:00</p>
-          <p>Sobota: 08:00 – 14:00</p>
-          <p>Niedziela: Zamknięte</p>
-        </div>
       </div>
       <div class="footer__bottom">
         <p>© 2026 <strong>BartekClean</strong> | Wszelkie prawa zastrzeżone</p>
-        <p class="footer__legal"><a href="polityka-prywatnosci.html">Polityka Prywatności</a> | <a href="regulamin.html">Regulamin</a></p>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="js/canvas-carousel-base.js?v=11"></script>
-  <script src="js/hero-carousel.js?v=11"></script>
-  <script src="js/scroll-effects.js?v=11"></script>
-  <script src="js/interactions.js?v=11"></script>
-  <script src="js/canvas-effects.js?v=11"></script>
-  <script src="js/before-after.js?v=11"></script>
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=11"></script>
-
-  <script>
-  // Cookie Consent
-  (function() {
-    const banner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('cookie-accept');
-    if (!banner || !acceptBtn) return;
-    if (localStorage.getItem('bclean-cookies')) {
-      banner.style.display = 'none';
-      return;
-    }
-    acceptBtn.addEventListener('click', () => {
-      localStorage.setItem('bclean-cookies', '1');
-      banner.style.opacity = '0';
-      banner.style.transform = 'translateY(100%)';
-      setTimeout(() => banner.remove(), 400);
-    });
-  })();
-  </script>
-
+  <script src="js/canvas-carousel-base.js?v=18"></script>
+  <script src="js/hero-carousel.js?v=18"></script>
+  <script src="js/scroll-effects.js?v=18"></script>
+  <script src="js/interactions.js?v=18"></script>
+  <script src="js/canvas-effects.js?v=18"></script>
+  <script src="js/main.js?v=18"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -667,100 +415,141 @@
     },
     "areaServed": ["Lubuskie", "Zachodniopomorskie", "Wielkopolskie", "Dolnośląskie"],
     "priceRange": "$$",
-    "openingHours": "Mo-Fr 08:00-18:00, Sa 08:00-14:00"
+    "openingHours": "Mo-Sa 08:00-18:00"
   }
   </script>
-  <!-- Exit Intent Popup -->
-  <div class="exit-popup" id="exit-popup" role="dialog" aria-modal="true" aria-label="Specjalna oferta" hidden>
-    <div class="exit-popup__overlay" id="exit-popup-overlay"></div>
-    <div class="exit-popup__content">
-      <button class="exit-popup__close" id="exit-popup-close" aria-label="Zamknij">×</button>
-      <div class="exit-popup__badge">Ograniczona oferta</div>
-      <h3 class="exit-popup__title">Nie wychodź jeszcze!</h3>
-      <p class="exit-popup__text">Zamów darmową wycenę <strong>jeszcze dziś</strong> i otrzymaj <span class="exit-popup__highlight">10% rabatu</span> na pierwsze zlecenie.</p>
-      <div class="exit-popup__features">
-        <div class="exit-popup__feature">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Darmowa wycena</span>
-        </div>
-        <div class="exit-popup__feature">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Gwarancja jakości</span>
-        </div>
-        <div class="exit-popup__feature">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Termin w ciągu 48h</span>
-        </div>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://bartekclean.pl/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Jaki jest zasięg działania BartekClean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Działamy na terenie Kostrzyna nad Odrą i w promieniu do 200 km, obsługując województwa: lubuskie, zachodniopomorskie, wielkopolskie i dolnośląskie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy oferujecie darmową wycenę?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tak, oferujemy bezpłatną wycenę. Wystarczy wypełnić formularz kontaktowy lub zadzwonić — przygotujemy indywidualną ofertę dopasowaną do zakresu prac."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Jakie powierzchnie możecie umyć?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Specjalizujemy się w myciu kostki brukowej, elewacji, dachów, podjazdów, tarasów oraz powierzchni przemysłowych. Każde zlecenie traktujemy indywidualnie, dopasowując metodę czyszczenia do rodzaju zabrudzenia i materiału."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy oferujecie impregnację po myciu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tak, oferujemy impregnację hydrofobową i przeciwglonową kostki brukowej oraz elewacji. Impregnacja chroni powierzchnię przed ponownym zabrudzeniem na długie lata."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Jak długo trwa realizacja zlecenia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Czas realizacji zależy od wielkości powierzchni i rodzaju zabrudzenia. Standardowe zlecenie na kostkę brukową trwa od kilku godzin do jednego dnia. Po oględzinach podajemy dokładny termin realizacji."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Cookie Consent -->
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Zgoda na cookies" aria-hidden="true">
+    <div class="cookie-banner__inner">
+      <div class="cookie-banner__text">
+        <p><strong>Używamy plików cookies</strong> aby zapewnić najlepszą jakość korzystania z naszej strony. Kontynuując przeglądanie, zgadzasz się na użycie cookies zgodnie z naszą <a href="#" data-open-modal="cookies">Polityką Cookies</a>.</p>
       </div>
-      <a href="#kontakt" class="exit-popup__cta" id="exit-popup-cta">Skorzystaj z rabatu →</a>
-      <p class="exit-popup__small">Oferta ważna tylko dla nowych klientów. Rabat naliczany od ceny końcowej.</p>
+      <div class="cookie-banner__actions">
+        <button class="cookie-banner__btn cookie-banner__btn--outline" data-cookie="reject">Odrzuć</button>
+        <button class="cookie-banner__btn cookie-banner__btn--primary" data-cookie="accept">Akceptuję</button>
+      </div>
     </div>
   </div>
 
+  <!-- Privacy Modal -->
+  <div class="modal" id="modal-privacy" role="dialog" aria-modal="true" aria-labelledby="modal-privacy-title" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__content">
+      <button class="modal__close" data-close-modal aria-label="Zamknij">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <h2 id="modal-privacy-title" class="modal__title">Polityka Prywatności</h2>
+      <div class="modal__body">
+        <h3>1. Administrator danych</h3>
+        <p>Administratorem Twoich danych osobowych jest <strong>BartekClean</strong> z siedzibą przy ul. Moniuszki 5/13, 66-470 Kostrzyn nad Odrą.</p>
+        <h3>2. Jakie dane zbieramy?</h3>
+        <p>Poprzez formularz kontaktowy zbieramy: imię, nazwisko, numer telefonu, adres e-mail (opcjonalnie) oraz treść zapytania. Dane te są niezbędne do przygotowania wyceny i kontaktu zwrotnego.</p>
+        <h3>3. Cel przetwarzania</h3>
+        <p>Dane przetwarzamy wyłącznie w celu:</p>
+        <ul>
+          <li>przygotowania i przedstawienia oferty/usługi,</li>
+          <li>kontaktu zwrotnego w sprawie zapytania,</li>
+          <li>realizacji zamówionej usługi.</li>
+        </ul>
+        <h3>4. Podstawa prawna</h3>
+        <p>Podstawą prawną przetwarzania jest Twoja zgoda (art. 6 ust. 1 lit. a RODO), wyrażona poprzez zaznaczenie odpowiedniego checkboxa w formularzu.</p>
+        <h3>5. Okres przechowywania</h3>
+        <p>Dane przechowujemy przez okres niezbędny do realizacji zapytania, maksymalnie przez 2 lata od daty ostatniego kontaktu.</p>
+        <h3>6. Twoje prawa</h3>
+        <p>Masz prawo do: dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych oraz wniesienia sprzeciwu. Aby skorzystać z praw, napisz na <a href="mailto:kontakt@bartekclean.pl">kontakt@bartekclean.pl</a>.</p>
+        <h3>7. Kontakt z Inspektorem Ochrony Danych</h3>
+        <p>W sprawach związanych z ochroną danych osobowych możesz kontaktować się z nami pod adresem e-mail: <a href="mailto:kontakt@bartekclean.pl">kontakt@bartekclean.pl</a>.</p>
+      </div>
+    </div>
+  </div>
 
-  <script>
-  // Exit Intent Popup
-  (function() {
-    const popup = document.getElementById('exit-popup');
-    const overlay = document.getElementById('exit-popup-overlay');
-    const closeBtn = document.getElementById('exit-popup-close');
-    const cta = document.getElementById('exit-popup-cta');
-    if (!popup) return;
+  <!-- Cookies Modal -->
+  <div class="modal" id="modal-cookies" role="dialog" aria-modal="true" aria-labelledby="modal-cookies-title" aria-hidden="true">
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__content">
+      <button class="modal__close" data-close-modal aria-label="Zamknij">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <h2 id="modal-cookies-title" class="modal__title">Polityka Cookies</h2>
+      <div class="modal__body">
+        <h3>1. Czym są cookies?</h3>
+        <p>Pliki cookies to niewielkie pliki tekstowe zapisywane na Twoim urządzeniu podczas przeglądania strony internetowej. Umożliwiają one zapamiętanie Twoich preferencji i poprawę jakości korzystania ze strony.</p>
+        <h3>2. Jakie cookies używamy?</h3>
+        <ul>
+          <li><strong>Niezbędne</strong> — wymagane do prawidłowego działania strony (np. formularz kontaktowy).</li>
+          <li><strong>Analityczne</strong> — pomagają nam zrozumieć, jak użytkownicy korzystają ze strony (Google Analytics).</li>
+          <li><strong>Funkcjonalne</strong> — zapamiętują Twoje preferencje (np. wybrane ustawienia).</li>
+        </ul>
+        <h3>3. Jak zarządzać cookies?</h3>
+        <p>Możesz w każdej chwili zmienić ustawienia cookies w swojej przeglądarce. Pamiętaj, że wyłączenie niektórych cookies może wpłynąć na funkcjonalność strony.</p>
+        <h3>4. Usuwanie cookies</h3>
+        <p>Aby usunąć pliki cookies, skorzystaj z ustawień swojej przeglądarki internetowej. Szczegółowe instrukcje znajdziesz w sekcji Pomocy swojej przeglądarki.</p>
+      </div>
+    </div>
+  </div>
 
-    let shown = false;
-    const storageKey = 'bclean-exit-popup';
-
-    // Don't show if already shown in this session or if cookie not accepted
-    if (sessionStorage.getItem(storageKey) || !localStorage.getItem('bclean-cookies')) return;
-
-    function show() {
-      if (shown) return;
-      shown = true;
-      popup.hidden = false;
-      requestAnimationFrame(() => {
-        popup.classList.add('active');
-      });
-      sessionStorage.setItem(storageKey, '1');
-      // Stop Lenis scroll
-      if (typeof lenis !== 'undefined') lenis.stop();
-      document.body.style.overflow = 'hidden';
-    }
-
-    function hide() {
-      popup.classList.remove('active');
-      setTimeout(() => { popup.hidden = true; }, 400);
-      if (typeof lenis !== 'undefined') lenis.start();
-      document.body.style.overflow = '';
-    }
-
-    // Mouse leave at top
-    document.addEventListener('mouseout', (e) => {
-      if (e.clientY < 10 && !e.relatedTarget) show();
-    });
-
-    closeBtn.addEventListener('click', hide);
-    overlay.addEventListener('click', hide);
-    cta.addEventListener('click', (e) => {
-      e.preventDefault();
-      hide();
-      const target = document.querySelector(cta.getAttribute('href'));
-      if (target) {
-        setTimeout(() => {
-          if (typeof lenis !== 'undefined') {
-            lenis.scrollTo(target, { offset: -80 });
-          } else {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 300);
-      }
-    });
-
-    // Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && shown && popup.classList.contains('active')) hide();
-    });
-  })();
-  </script>
-
+  <!-- Sticky Mobile CTA -->
+  <a href="tel:+48123456789" class="sticky-cta" aria-label="Zadzwoń do BartekClean">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    <span>Zadzwoń teraz</span>
+  </a>
 </body>
 </html>

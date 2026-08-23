@@ -35,8 +35,6 @@
   .form { padding:36px 24px; }
   .form__row { grid-template-columns:1fr; }
 
-  .carousel { height:400px; }
-  .carousel__slide { width:80vw; height:250px; }
 
   .nav { display:none; position:fixed; inset:0; background:rgba(7,11,20,0.98);
     flex-direction:column; align-items:center; justify-content:center; gap:32px;
@@ -57,7 +55,123 @@
   .hero-carousel__bottom-fade { height: 60px; }
   .values__grid { grid-template-columns:1fr; }
   .section__header h2 { font-size:1.7rem; }
-  .carousel { height:300px; }
-  .carousel__slide { width:90vw; height:200px; }
-  .carousel__arrow { width:40px; height:40px; font-size:1rem; }
+
+}
+
+/* ========== STICKY CTA MOBILE ========== */
+@media (max-width: 768px) {
+  .sticky-cta {
+    display: flex;
+  }
+  body {
+    padding-bottom: 60px;
+  }
+  .ba-slider__handle-circle {
+    width: 40px;
+    height: 40px;
+  }
+  .ba-slider__handle-circle svg {
+    width: 14px;
+    height: 14px;
+  }
+  .ba-slider__label {
+    font-size: 0.65rem;
+    padding: 4px 10px;
+  }
+}
+
+@media (min-width: 769px) {
+  .sticky-cta {
+    display: none !important;
+  }
+}
+
+/* ========== FOOTER RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+    max-width: 100%;
+    text-align: center;
+  }
+  .footer__logo {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding-top: 48px;
+  }
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+  .footer__links a:hover {
+    padding-left: 0;
+  }
+  .footer__contact p {
+    text-align: center;
+  }
+}
+
+/* ========== COOKIE BANNER RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .cookie-banner__inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .cookie-banner__actions {
+    width: 100%;
+    justify-content: center;
+  }
+  .cookie-banner__btn {
+    flex: 1;
+    max-width: 160px;
+  }
+}
+
+/* ========== MODAL RESPONSIVE ========== */
+@media (max-width: 640px) {
+  .modal {
+    padding: 12px;
+    align-items: flex-end;
+  }
+  .modal__content {
+    padding: 32px 24px;
+    max-height: 90vh;
+    border-radius: var(--s-radius) var(--s-radius) 0 0;
+  }
+  .modal__title {
+    font-size: 1.3rem;
+  }
+  .modal__body {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========== RODO CHECKBOX RESPONSIVE ========== */
+@media (max-width: 640px) {
+  .rodo-label {
+    font-size: 0.72rem;
+  }
+}
+
+/* ========== HERO RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .hero-scroll-indicator {
+    display: none;
+  }
+  .hero-brand__img {
+    width: 44px;
+    height: 44px;
+  }
+  .hero-brand__name {
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+  }
 }

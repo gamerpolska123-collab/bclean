@@ -5,12 +5,13 @@ const ScrollProgress = {
     this.bar = document.getElementById('scroll-progress');
     if (!this.bar) return;
     window.addEventListener('scroll', () => this.update(), { passive: true });
+    this.update();
   },
   update() {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    this.bar.style.width = progress + '%';
+    if (this.bar) this.bar.style.width = progress + '%';
   }
 };
 
@@ -34,13 +35,7 @@ const HeaderScroll = {
 /* ========== REVEAL ON SCROLL ========== */
 const RevealOnScroll = {
   init() {
-    // Respect prefers-reduced-motion
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
-      return;
-    }
     const elements = document.querySelectorAll('.reveal');
-    if (!elements.length) return;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -59,10 +54,6 @@ const RevealOnScroll = {
 const Parallax = {
   elements: [],
   init() {
-    // Respect prefers-reduced-motion
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
     this.elements = document.querySelectorAll('[data-parallax]');
     if (!this.elements.length) return;
     window.addEventListener('scroll', () => this.update(), { passive: true });
@@ -82,7 +73,6 @@ const Parallax = {
 const CounterAnim = {
   init() {
     const counters = document.querySelectorAll('[data-counter]');
-    if (!counters.length) return;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -94,61 +84,49 @@ const CounterAnim = {
     counters.forEach(c => observer.observe(c));
   },
   animate(el) {
-    const target = parseInt(el.dataset.counter, 10);
+    const target = parseInt(el.dataset.counter);
     const suffix = el.dataset.counterSuffix || '';
     const duration = 2000;
     const start = performance.now();
-    const easeOutExpo = t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
     const step = (now) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = easeOutExpo(progress);
-      el.textContent = Math.floor(eased * target) + suffix;
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        el.textContent = target + suffix;
-      }
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(ease * target);
+      el.textContent = current + suffix;
+      if (progress < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
   }
 };
 
-/* ========== TEXT REVEAL ========== */
-const TextReveal = {
-  init() {
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('.text-reveal, .line-reveal, .img-reveal').forEach(el => el.classList.add('active'));
-      return;
-    }
-    const elements = document.querySelectorAll('.text-reveal, .line-reveal, .img-reveal');
-    if (!elements.length) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
-    elements.forEach(el => observer.observe(el));
-  }
-};
-
-/* ========== LOGO MORPH (header logo visibility) ========== */
+/* ========== LOGO MORPH (hero <-> header) ========== */
 const LogoMorph = {
+  heroBrand: null,
+  headerLogo: null,
+  threshold: 60,
   init() {
-    const logo = document.getElementById('header-logo');
-    if (!logo) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          logo.classList.remove('is-visible');
-        } else {
-          logo.classList.add('is-visible');
-        }
-      });
-    }, { threshold: 0 });
-    const hero = document.getElementById('hero');
-    if (hero) observer.observe(hero);
+    this.heroBrand = document.getElementById('hero-brand');
+    this.headerLogo = document.getElementById('header-logo');
+    if (!this.heroBrand || !this.headerLogo) return;
+
+    // Show hero brand with animation after a brief delay
+    setTimeout(() => {
+      this.heroBrand.classList.add('is-visible');
+    }, 1500);
+
+    window.addEventListener('scroll', () => this.update(), { passive: true });
+    this.update();
+  },
+  update() {
+    const scrolled = window.scrollY > this.threshold;
+    if (scrolled) {
+      this.heroBrand.classList.add('is-scrolled');
+      this.heroBrand.classList.remove('is-visible');
+      this.headerLogo.classList.add('is-visible');
+    } else {
+      this.heroBrand.classList.remove('is-scrolled');
+      this.heroBrand.classList.add('is-visible');
+      this.headerLogo.classList.remove('is-visible');
+    }
   }
 };
