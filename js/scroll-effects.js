@@ -109,10 +109,10 @@ const LogoMorph = {
     this.headerLogo = document.getElementById('header-logo');
     if (!this.heroBrand || !this.headerLogo) return;
 
-    // Show hero brand with animation after a brief delay
+    // Show hero brand with animation after loader finishes
     setTimeout(() => {
       this.heroBrand.classList.add('is-visible');
-    }, 1500);
+    }, 900);
 
     window.addEventListener('scroll', () => this.update(), { passive: true });
     this.update();

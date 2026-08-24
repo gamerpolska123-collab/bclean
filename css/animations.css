@@ -179,3 +179,25 @@
     transform: none !important;
   }
 }
+
+@keyframes cleanGlow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(0,212,255,0.25),
+                 0 0 16px rgba(0,212,255,0.10);
+  }
+  25% {
+    text-shadow: 0 0 12px rgba(0,212,255,0.45),
+                 0 0 24px rgba(0,212,255,0.20),
+                 0 0 40px rgba(0,212,255,0.08);
+  }
+  50% {
+    text-shadow: 0 0 18px rgba(0,212,255,0.70),
+                 0 0 36px rgba(0,212,255,0.35),
+                 0 0 60px rgba(0,212,255,0.15);
+  }
+  75% {
+    text-shadow: 0 0 12px rgba(0,212,255,0.45),
+                 0 0 24px rgba(0,212,255,0.20),
+                 0 0 40px rgba(0,212,255,0.08);
+  }
+}

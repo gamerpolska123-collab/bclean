@@ -36,8 +36,8 @@
   height: auto;
   filter: drop-shadow(0 2px 6px rgba(0,212,255,0.2));
   opacity: 0;
-  transform: translateX(-30px);
-  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  transform: translateX(-120%);
+  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
 }
 .header__logo.is-visible .header__logo-img {
   opacity: 1;
@@ -171,6 +171,7 @@
 }
 
 .hero-brand__img {
+  display: none;
   width: 56px;
   height: 56px;
   object-fit: contain;
@@ -180,6 +181,7 @@
   transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
 }
 .hero-brand.is-visible .hero-brand__img {
+  display: none;
   opacity: 1;
   transform: translateX(0) scale(1) rotate(0deg);
 }
@@ -194,7 +196,7 @@
   font-weight: var(--fw-800);
   letter-spacing: -0.5px;
   color: #fff;
-  line-height: 1.05;
+  line-height: 1.25;
   text-shadow: 0 2px 20px rgba(0,0,0,0.6), 0 0 60px rgba(0,0,0,0.4), 0 0 120px rgba(0,0,0,0.2);
   transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -205,8 +207,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 2px 10px rgba(0,212,255,0.35));
-  animation: shimmer 3.5s linear infinite;
+  animation: shimmer 3s linear infinite, cleanGlow 2.5s ease-in-out infinite;
+  display: inline-block;
+  padding-bottom: 0.12em;
+  padding-right: 0.08em;
 }
 .hero-brand__tag {
   font-size: 0.6rem;

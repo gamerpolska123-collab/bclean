@@ -63,9 +63,7 @@ const FormHandler = {
       btn.style.background = 'linear-gradient(135deg, #00c853, #00e676)';
       btn.disabled = true;
 
-      // TODO: Podłącz backend (Formspree, EmailJS, własny endpoint)
       console.log('[Form] Dane do wysłania:', Object.fromEntries(new FormData(form)));
-
       this.showToast('Dziękujemy! Twoje zapytanie zostało wysłane.', 'success');
 
       setTimeout(() => {
@@ -172,7 +170,6 @@ const BeforeAfterSlider = {
       window.addEventListener('mouseup', () => isDragging = false);
       window.addEventListener('touchend', () => isDragging = false);
 
-      // Click to jump
       slider.addEventListener('click', (e) => {
         if (isDragging) return;
         update(e.clientX);
@@ -187,13 +184,8 @@ const CookieConsent = {
   init() {
     this.banner = document.getElementById('cookie-banner');
     if (!this.banner) return;
+    if (localStorage.getItem('bclean_cookies')) return;
 
-    // Check if already decided
-    if (localStorage.getItem('bclean_cookies')) {
-      return;
-    }
-
-    // Show banner after delay
     setTimeout(() => {
       this.banner.classList.add('is-visible');
       this.banner.setAttribute('aria-hidden', 'false');
@@ -217,7 +209,6 @@ const CookieConsent = {
 /* ========== MODAL SYSTEM ========== */
 const ModalSystem = {
   init() {
-    // Open modal triggers
     document.querySelectorAll('[data-open-modal]').forEach(trigger => {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
@@ -226,7 +217,6 @@ const ModalSystem = {
       });
     });
 
-    // Close modal triggers
     document.querySelectorAll('[data-close-modal]').forEach(trigger => {
       trigger.addEventListener('click', (e) => {
         const modal = trigger.closest('.modal');
@@ -234,7 +224,6 @@ const ModalSystem = {
       });
     });
 
-    // Close on Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         document.querySelectorAll('.modal.is-open').forEach(m => this.close(m));
@@ -247,8 +236,6 @@ const ModalSystem = {
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-
-    // Focus first focusable element
     const focusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
     if (focusable) focusable.focus();
   },
@@ -258,3 +245,15 @@ const ModalSystem = {
     document.body.style.overflow = '';
   }
 };
+
+/* ========== INIT ========== */
+document.addEventListener('DOMContentLoaded', () => {
+  MobileMenu.init();
+  SmoothScroll.init();
+  FormHandler.init();
+  Loader.init();
+  MagneticButtons.init();
+  BeforeAfterSlider.init();
+  CookieConsent.init();
+  ModalSystem.init();
+});

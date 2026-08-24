@@ -1,4 +1,4 @@
-/* ========== HERO CANVAS RING CAROUSEL v12 — OPTIMIZED ========== */
+/* ========== HERO CANVAS RING CAROUSEL v15 — REWRITE ========== */
 class HeroCarousel {
   constructor(selector, services) {
     this.canvas = document.querySelector(selector);
@@ -35,27 +35,23 @@ class HeroCarousel {
     this.ringCyVel = 0;
 
     this.slideOffsets = services.map(() => ({
-      x: (Math.random() - 0.5) * 30,
-      y: (Math.random() - 0.5) * 15,
-      scale: 1 + Math.random() * 0.05,
-      targetScale: 1.06 + Math.random() * 0.04,
-      currentScale: 1 + Math.random() * 0.05,
+      x: (Math.random() - 0.5) * 20,
+      y: (Math.random() - 0.5) * 10,
+      currentScale: 1 + Math.random() * 0.03,
+      targetScale: 1.04 + Math.random() * 0.02,
     }));
 
-    // Text animation state
+    // Text animation
     this.textAlpha = 1;
     this.textTargetAlpha = 1;
     this.textY = 0;
     this.textTargetY = 0;
     this.textBlur = 0;
     this.textTargetBlur = 0;
-
-    // Cached text metrics
-    this._cachedTitleWidth = 0;
-    this._cachedDescLines = [];
     this._cacheValid = false;
+    this._cachedDescLines = [];
 
-    // Particles (reduced count for performance)
+    // Particles
     this.particles = [];
     this.initParticles();
 
@@ -141,7 +137,7 @@ class HeroCarousel {
   startLoop() {
     let lastTime = performance.now();
     const tick = (now) => {
-      const dt = Math.min(now - lastTime, 33); // cap at ~30fps worth of dt
+      const dt = Math.min(now - lastTime, 33);
       lastTime = now;
       this.time = now;
       this.update(dt);
@@ -154,7 +150,7 @@ class HeroCarousel {
   update(dt) {
     if (!this.loaded) return;
 
-    // Shine timer — when it reaches end of active segment, trigger next slide
+    // Shine timer — full circumference
     if (!this.isTransitioning) {
       this.shineProgress += dt / this.autoplayInterval;
       if (this.shineProgress >= 1) {
@@ -169,7 +165,7 @@ class HeroCarousel {
         this.transition = 1;
         this.current = this.next;
         this.isTransitioning = false;
-        this.autoplayTimer = 0;
+        this.shineProgress = 0;
         this.textTargetAlpha = 1;
         this.textTargetY = 0;
         this.textTargetBlur = 0;
@@ -221,8 +217,6 @@ class HeroCarousel {
       if (p.y < -0.05) p.y = 1.05;
       p.currentOpacity = p.opacity * (0.5 + 0.5 * Math.sin(t * 0.0007 + p.phase));
     }
-
-    // Shine progress handled in autoplay section above
   }
 
   goTo(index) {
@@ -234,12 +228,11 @@ class HeroCarousel {
     this.textTargetBlur = 0;
     this.shineProgress = 0;
     this.slideOffsets[index].currentScale = 1 + Math.random() * 0.02;
-    this.slideOffsets[index].targetScale = 1.07 + Math.random() * 0.03;
-    // Always rotate left (negative direction), never jump back
+    this.slideOffsets[index].targetScale = 1.05 + Math.random() * 0.02;
     const seg = (Math.PI * 2) / this.services.length;
     const diff = index - this.current;
     let steps = diff;
-    if (steps < 0) steps += this.services.length; // wrap around forward
+    if (steps < 0) steps += this.services.length;
     this.targetRingRotation -= steps * seg;
   }
 
@@ -255,7 +248,6 @@ class HeroCarousel {
     this.drawBackground(ctx);
     this.drawVignette(ctx);
     this.drawParticles(ctx);
-    this.drawTextOverlay(ctx);
     this.drawBottomFade(ctx);
     this.drawRing(ctx);
     this.drawServiceText(ctx);
@@ -294,10 +286,8 @@ class HeroCarousel {
     const ratio = img.width / img.height;
     const screenRatio = this.W / this.H;
     let dw, dh;
-
     const pw = this.W * 1.04;
     const ph = this.H * 1.04;
-
     if (screenRatio > ratio) {
       dw = pw;
       dh = pw / ratio;
@@ -305,12 +295,10 @@ class HeroCarousel {
       dh = ph;
       dw = ph * ratio;
     }
-
     const zdw = dw * scale;
     const zdh = dh * scale;
     const dx = (this.W - zdw) / 2 + offsetX;
     const dy = (this.H - zdh) / 2 + offsetY;
-
     ctx.globalAlpha = alpha;
     ctx.drawImage(img, dx, dy, zdw, zdh);
     ctx.globalAlpha = 1;
@@ -345,16 +333,6 @@ class HeroCarousel {
     ctx.restore();
   }
 
-  drawTextOverlay(ctx) {
-    const g = ctx.createRadialGradient(0, 0, this.W * 0.04, 0, 0, this.W * 0.50);
-    g.addColorStop(0, 'rgba(7,11,20,0.55)');
-    g.addColorStop(0.25, 'rgba(7,11,20,0.20)');
-    g.addColorStop(0.55, 'rgba(7,11,20,0.04)');
-    g.addColorStop(1, 'rgba(7,11,20,0)');
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, this.W, this.H);
-  }
-
   drawBottomFade(ctx) {
     const g = ctx.createLinearGradient(0, this.H * 0.30, 0, this.H);
     g.addColorStop(0, 'rgba(7,11,20,0)');
@@ -373,141 +351,6 @@ class HeroCarousel {
     g.addColorStop(1, 'rgba(7,11,20,0)');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, this.W, 90);
-  }
-
-  // Draw rounded rect manually (cross-browser compatible)
-  roundRect(ctx, x, y, w, h, r) {
-    const radius = Math.min(r, w / 2, h / 2);
-    ctx.beginPath();
-    ctx.moveTo(x + radius, y);
-    ctx.lineTo(x + w - radius, y);
-    ctx.arcTo(x + w, y, x + w, y + radius, radius);
-    ctx.lineTo(x + w, y + h - radius);
-    ctx.arcTo(x + w, y + h, x + w - radius, y + h, radius);
-    ctx.lineTo(x + radius, y + h);
-    ctx.arcTo(x, y + h, x, y + h - radius, radius);
-    ctx.lineTo(x, y + radius);
-    ctx.arcTo(x, y, x + radius, y, radius);
-    ctx.closePath();
-  }
-
-  drawServiceText(ctx) {
-    const svc = this.services[this.current];
-    if (!svc) return;
-
-    const alpha = this.textAlpha;
-    if (alpha < 0.01) return;
-
-    const yOffset = this.textY;
-    const blur = this.textBlur;
-
-    const boxW = Math.min(360, this.W * 0.28);
-    const boxX = this.W - boxW - Math.max(36, this.W * 0.035);
-    const boxY = this.H * 0.16 + yOffset;
-    const pad = 24;
-    const boxH = 200;
-
-    ctx.save();
-    ctx.globalAlpha = alpha;
-
-    // Simulated blur via reduced alpha (NO ctx.filter — performance killer)
-    if (blur > 0.5) {
-      ctx.globalAlpha *= Math.max(0.2, 1 - blur * 0.15);
-    }
-
-    // Watermark number
-    ctx.save();
-    ctx.font = `800 ${Math.min(120, this.W * 0.09)}px Inter, sans-serif`;
-    ctx.fillStyle = 'rgba(0, 212, 255, 0.035)';
-    ctx.textAlign = 'right';
-    ctx.fillText(`0${this.current + 1}`, boxX + boxW + 8, boxY + 70);
-    ctx.restore();
-
-    // Service label
-    ctx.font = '600 10px Inter, sans-serif';
-    ctx.textAlign = 'left';
-    ctx.fillStyle = 'rgba(0, 212, 255, 0.75)';
-    ctx.fillText(`USŁUGA 0${this.current + 1} / 0${this.services.length}`, boxX, boxY + 12);
-
-    // Title
-    const titleSize = Math.min(24, this.W * 0.020);
-    ctx.font = `800 ${titleSize}px Inter, sans-serif`;
-    ctx.fillStyle = '#fff';
-    ctx.textAlign = 'left';
-    ctx.shadowColor = 'rgba(0,0,0,0.7)';
-    ctx.shadowBlur = 16;
-    ctx.shadowOffsetY = 3;
-    ctx.fillText(svc.title, boxX, boxY + 44);
-    ctx.shadowBlur = 0;
-    ctx.shadowOffsetY = 0;
-
-    // Accent line
-    ctx.fillStyle = 'rgba(0, 212, 255, 0.6)';
-    ctx.fillRect(boxX, boxY + 54, 40, 1.5);
-
-    // Description — cache lines to avoid re-measuring every frame
-    if (!this._cacheValid) {
-      const descSize = Math.min(12, this.W * 0.010);
-      ctx.font = `400 ${descSize}px Inter, sans-serif`;
-      const maxW = boxW;
-      const words = svc.description.split(' ');
-      let line = '', lines = [];
-      for (const word of words) {
-        const test = line + word + ' ';
-        if (ctx.measureText(test).width > maxW && line !== '') {
-          lines.push(line.trim());
-          line = word + ' ';
-        } else {
-          line = test;
-        }
-      }
-      lines.push(line.trim());
-      this._cachedDescLines = lines;
-      this._cachedTitleWidth = ctx.measureText(svc.title).width;
-      this._cacheValid = true;
-    }
-
-    const descSize = Math.min(12, this.W * 0.010);
-    ctx.font = `400 ${descSize}px Inter, sans-serif`;
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.70)';
-    let descY = boxY + 78;
-    for (const line of this._cachedDescLines) {
-      ctx.fillText(line, boxX, descY);
-      descY += 18;
-    }
-
-    // Vertical dots
-    const dotR = 3;
-    const dotGap = 12;
-    const dotsY = boxY + 130;
-    const dotsX = boxX + boxW - 4;
-
-    for (let i = 0; i < this.services.length; i++) {
-      const isActive = i === this.current;
-      const dotY = dotsY + i * dotGap;
-      if (isActive) {
-        ctx.fillStyle = 'rgba(0, 212, 255, 0.25)';
-        ctx.fillRect(dotsX - 16, dotY - 0.5, 14, 1);
-        const dg = ctx.createRadialGradient(dotsX, dotY, 0, dotsX, dotY, dotR * 3);
-        dg.addColorStop(0, 'rgba(0, 212, 255, 0.5)');
-        dg.addColorStop(1, 'rgba(0, 212, 255, 0)');
-        ctx.fillStyle = dg;
-        ctx.beginPath();
-        ctx.arc(dotsX, dotY, dotR * 3, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#00d4ff';
-        ctx.beginPath();
-        ctx.arc(dotsX, dotY, dotR, 0, Math.PI * 2);
-        ctx.fill();
-      } else {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.10)';
-        ctx.beginPath();
-        ctx.arc(dotsX, dotY, dotR * 0.6, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    ctx.restore();
   }
 
   drawRing(ctx) {
@@ -559,9 +402,15 @@ class HeroCarousel {
       ctx.translate(segCx, segCy);
       ctx.rotate(midA + Math.PI / 2);
 
-      const coverH = (outerR - innerR) * 1.20;
-      const coverW = coverH * (img.width / img.height);
-      let scale = isActive ? 1.05 : 0.97;
+      // === KEY FIX: larger cover to fill segment completely ===
+      // Segment is a wedge. We need the image to be large enough to fill it.
+      // coverH = segment thickness * 1.5 (fill vertically with margin)
+      // coverW = at least chord length of outer arc (fill horizontally)
+      const segThickness = outerR - innerR;
+      const chordLen = 2 * outerR * Math.sin(segAngle / 2); // chord at outer radius
+      const coverH = segThickness * 1.55;
+      const coverW = Math.max(coverH * (img.width / img.height), chordLen * 0.85);
+      let scale = isActive ? 1.04 : 0.98;
       if (isActive) scale += Math.sin(this.time * 0.001) * 0.002;
 
       ctx.globalAlpha = depthFactor;
@@ -611,7 +460,7 @@ class HeroCarousel {
       ctx.restore();
     }
 
-    // Inner circle
+    // Inner circle mask
     const innerGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, innerR);
     innerGrad.addColorStop(0, 'rgba(7,11,20,0.995)');
     innerGrad.addColorStop(0.5, 'rgba(7,11,20,0.90)');
@@ -667,12 +516,24 @@ class HeroCarousel {
     ctx.stroke();
     ctx.shadowBlur = 0;
 
-    // Shine — runs left-to-right as a timer indicator
-    const shinePos = this.shineProgress;
-    const shineA = aStart + (aEnd - aStart) * shinePos;
+    // Shine — full circumference
+    const totalAngle = Math.PI * 2;
+    const shineAngle = -Math.PI / 2 + this.shineProgress * totalAngle;
     const shineR = outerR + 3;
-    const shineX = cx + Math.cos(shineA) * shineR;
-    const shineY = cy + Math.sin(shineA) * shineR;
+    const shineX = cx + Math.cos(shineAngle) * shineR;
+    const shineY = cy + Math.sin(shineAngle) * shineR;
+
+    // Glow trail
+    const trailLen = 0.40;
+    ctx.beginPath();
+    ctx.arc(cx, cy, shineR, shineAngle - trailLen, shineAngle);
+    ctx.strokeStyle = 'rgba(0,212,255,0.12)';
+    ctx.lineWidth = 6;
+    ctx.shadowColor = 'rgba(0,212,255,0.40)';
+    ctx.shadowBlur = 24;
+    ctx.stroke();
+
+    // Main shine dot
     const shineGrad = ctx.createRadialGradient(shineX, shineY, 0, shineX, shineY, 35);
     shineGrad.addColorStop(0, 'rgba(255,255,255,0.40)');
     shineGrad.addColorStop(0.25, 'rgba(0,212,255,0.18)');
@@ -681,6 +542,31 @@ class HeroCarousel {
     ctx.beginPath();
     ctx.arc(shineX, shineY, 35, 0, Math.PI * 2);
     ctx.fill();
+
+    // Core dot
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.beginPath();
+    ctx.arc(shineX, shineY, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Halo
+    ctx.fillStyle = 'rgba(0,212,255,0.20)';
+    ctx.beginPath();
+    ctx.arc(shineX, shineY, 7, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Segment under shine highlight
+    const segUnderShine = Math.floor(((shineAngle + Math.PI / 2) / segAngle + count) % count);
+    const suStart = this.ringRotation + segUnderShine * segAngle - Math.PI / 2 - segAngle / 2;
+    const suEnd = suStart + segAngle - gap;
+    ctx.beginPath();
+    ctx.arc(cx, cy, outerR + 2, suStart, suEnd);
+    ctx.strokeStyle = 'rgba(0,212,255,0.20)';
+    ctx.lineWidth = 3;
+    ctx.shadowColor = 'rgba(0,212,255,0.25)';
+    ctx.shadowBlur = 12;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
 
     // Inner reflection
     ctx.beginPath();
@@ -691,6 +577,121 @@ class HeroCarousel {
     ctx.shadowBlur = 10;
     ctx.stroke();
     ctx.shadowBlur = 0;
+
+    ctx.restore();
+  }
+
+  drawServiceText(ctx) {
+    const svc = this.services[this.current];
+    if (!svc) return;
+
+    const alpha = this.textAlpha;
+    if (alpha < 0.01) return;
+
+    const yOffset = this.textY;
+    const blur = this.textBlur;
+
+    const boxW = Math.min(360, this.W * 0.28);
+    const boxX = this.W - boxW - Math.max(36, this.W * 0.035);
+    const boxY = this.H * 0.16 + yOffset;
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+
+    if (blur > 0.5) {
+      ctx.globalAlpha *= Math.max(0.2, 1 - blur * 0.15);
+    }
+
+    // Watermark number
+    ctx.save();
+    ctx.font = `800 ${Math.min(120, this.W * 0.09)}px Inter, sans-serif`;
+    ctx.fillStyle = 'rgba(0, 212, 255, 0.035)';
+    ctx.textAlign = 'right';
+    ctx.fillText(`0${this.current + 1}`, boxX + boxW + 8, boxY + 70);
+    ctx.restore();
+
+    // Service label
+    ctx.font = '600 10px Inter, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillStyle = 'rgba(0, 212, 255, 0.75)';
+    ctx.fillText(`USŁUGA 0${this.current + 1} / 0${this.services.length}`, boxX, boxY + 12);
+
+    // Title with text-shadow
+    const titleSize = Math.min(24, this.W * 0.020);
+    ctx.font = `800 ${titleSize}px Inter, sans-serif`;
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'left';
+    ctx.shadowColor = 'rgba(0,0,0,0.7)';
+    ctx.shadowBlur = 16;
+    ctx.shadowOffsetY = 3;
+    ctx.fillText(svc.title, boxX, boxY + 44);
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetY = 0;
+
+    // Accent line
+    ctx.fillStyle = 'rgba(0, 212, 255, 0.6)';
+    ctx.fillRect(boxX, boxY + 54, 40, 1.5);
+
+    // Description
+    if (!this._cacheValid) {
+      const descSize = Math.min(12, this.W * 0.010);
+      ctx.font = `400 ${descSize}px Inter, sans-serif`;
+      const maxW = boxW;
+      const words = svc.description.split(' ');
+      let line = '', lines = [];
+      for (const word of words) {
+        const test = line + word + ' ';
+        if (ctx.measureText(test).width > maxW && line !== '') {
+          lines.push(line.trim());
+          line = word + ' ';
+        } else {
+          line = test;
+        }
+      }
+      lines.push(line.trim());
+      this._cachedDescLines = lines;
+      this._cacheValid = true;
+    }
+
+    const descSize = Math.min(12, this.W * 0.010);
+    ctx.font = `400 ${descSize}px Inter, sans-serif`;
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.70)';
+    let descY = boxY + 78;
+    for (const line of this._cachedDescLines) {
+      ctx.fillText(line, boxX, descY);
+      descY += 18;
+    }
+
+    // Vertical dots
+    const dotR = 3;
+    const dotGap = 12;
+    const dotsY = boxY + 130;
+    const dotsX = boxX + boxW - 4;
+
+    for (let i = 0; i < this.services.length; i++) {
+      const isActive = i === this.current;
+      const dotY = dotsY + i * dotGap;
+      if (isActive) {
+        ctx.fillStyle = 'rgba(0, 212, 255, 0.25)';
+        ctx.fillRect(dotsX - 16, dotY - 0.5, 14, 1);
+        const dg = ctx.createRadialGradient(dotsX, dotY, 0, dotsX, dotY, dotR * 3);
+        dg.addColorStop(0, 'rgba(0, 212, 255, 0.5)');
+        dg.addColorStop(1, 'rgba(0, 212, 255, 0)');
+        ctx.fillStyle = dg;
+        ctx.beginPath();
+        ctx.arc(dotsX, dotY, dotR * 3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#00d4ff';
+        ctx.beginPath();
+        ctx.arc(dotsX, dotY, dotR, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.10)';
+        ctx.beginPath();
+        ctx.arc(dotsX, dotY, dotR * 0.6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
 
     ctx.restore();
   }
