@@ -172,18 +172,18 @@ class HeroCarousel {
         this._cacheValid = false;
       } else {
         const t = this.transition;
-        if (t < 0.35) {
-          this.textTargetAlpha = 1 - t / 0.35;
-          this.textTargetY = -15 * (t / 0.35);
-          this.textTargetBlur = (t / 0.35) * 3;
-        } else if (t > 0.65) {
-          const t2 = (t - 0.65) / 0.35;
+        if (t < 0.20) {
+          this.textTargetAlpha = 1 - t / 0.20;
+          this.textTargetY = -10 * (t / 0.20);
+          this.textTargetBlur = (t / 0.20) * 2;
+        } else if (t > 0.80) {
+          const t2 = (t - 0.80) / 0.20;
           this.textTargetAlpha = t2;
-          this.textTargetY = 15 * (1 - t2);
+          this.textTargetY = 10 * (1 - t2);
           this.textTargetBlur = (1 - t2) * 2;
         } else {
           this.textTargetAlpha = 0;
-          this.textTargetBlur = 3;
+          this.textTargetBlur = 2;
         }
       }
     }
@@ -252,6 +252,7 @@ class HeroCarousel {
     this.drawRing(ctx);
     this.drawServiceText(ctx);
     this.drawTopBar(ctx);
+    this.drawBottomMask(ctx);
   }
 
   drawBackground(ctx) {
@@ -306,12 +307,13 @@ class HeroCarousel {
 
   drawVignette(ctx) {
     const cx = this.W / 2, cy = this.H / 2;
-    const r1 = this.W * 0.30, r2 = this.W * 0.90;
+    const r1 = this.W * 0.22, r2 = this.W * 0.95;
     const vig = ctx.createRadialGradient(cx, cy, r1, cx, cy, r2);
     vig.addColorStop(0, 'rgba(7,11,20,0)');
-    vig.addColorStop(0.5, 'rgba(7,11,20,0.06)');
-    vig.addColorStop(0.8, 'rgba(7,11,20,0.30)');
-    vig.addColorStop(1, 'rgba(7,11,20,0.50)');
+    vig.addColorStop(0.35, 'rgba(7,11,20,0.08)');
+    vig.addColorStop(0.65, 'rgba(7,11,20,0.40)');
+    vig.addColorStop(0.85, 'rgba(7,11,20,0.72)');
+    vig.addColorStop(1, 'rgba(7,11,20,0.85)');
     ctx.fillStyle = vig;
     ctx.fillRect(0, 0, this.W, this.H);
   }
@@ -334,23 +336,35 @@ class HeroCarousel {
   }
 
   drawBottomFade(ctx) {
-    const g = ctx.createLinearGradient(0, this.H * 0.30, 0, this.H);
+    const g = ctx.createLinearGradient(0, this.H * 0.22, 0, this.H);
     g.addColorStop(0, 'rgba(7,11,20,0)');
-    g.addColorStop(0.18, 'rgba(7,11,20,0.08)');
-    g.addColorStop(0.40, 'rgba(7,11,20,0.40)');
-    g.addColorStop(0.65, 'rgba(7,11,20,0.78)');
-    g.addColorStop(0.85, 'rgba(7,11,20,0.95)');
-    g.addColorStop(1, 'rgba(7,11,20,0.99)');
+    g.addColorStop(0.12, 'rgba(7,11,20,0.10)');
+    g.addColorStop(0.30, 'rgba(7,11,20,0.45)');
+    g.addColorStop(0.55, 'rgba(7,11,20,0.85)');
+    g.addColorStop(0.80, 'rgba(7,11,20,0.98)');
+    g.addColorStop(1, 'rgba(7,11,20,1)');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, this.W, this.H);
   }
+  drawBottomMask(ctx) {
+    const h = this.H * 0.18;
+    const g = ctx.createLinearGradient(0, this.H - h, 0, this.H);
+    g.addColorStop(0, 'rgba(7,11,20,0)');
+    g.addColorStop(0.35, 'rgba(7,11,20,0.55)');
+    g.addColorStop(0.70, 'rgba(7,11,20,0.92)');
+    g.addColorStop(1, 'rgba(7,11,20,1)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, this.H - h, this.W, h);
+  }
 
   drawTopBar(ctx) {
-    const g = ctx.createLinearGradient(0, 0, 0, 90);
-    g.addColorStop(0, 'rgba(7,11,20,0.50)');
+    const h = Math.min(140, this.H * 0.18);
+    const g = ctx.createLinearGradient(0, 0, 0, h);
+    g.addColorStop(0, 'rgba(7,11,20,0.82)');
+    g.addColorStop(0.5, 'rgba(7,11,20,0.45)');
     g.addColorStop(1, 'rgba(7,11,20,0)');
     ctx.fillStyle = g;
-    ctx.fillRect(0, 0, this.W, 90);
+    ctx.fillRect(0, 0, this.W, h);
   }
 
   drawRing(ctx) {
@@ -358,7 +372,7 @@ class HeroCarousel {
     const cy = this.H + this.H * this.ringCyRatio;
 
     const isMobile = this.W < 768;
-    const ringScale = isMobile ? 0.50 : (this.W < 1200 ? 0.62 : 0.72);
+    const ringScale = isMobile ? 0.50 : (this.W < 1200 ? 0.68 : 0.78);
     const outerR = Math.min(this.W, this.H) * ringScale;
     const innerR = outerR * 0.46;
     const segAngle = (Math.PI * 2) / this.services.length;
@@ -591,9 +605,10 @@ class HeroCarousel {
     const yOffset = this.textY;
     const blur = this.textBlur;
 
-    const boxW = Math.min(360, this.W * 0.28);
-    const boxX = this.W - boxW - Math.max(36, this.W * 0.035);
-    const boxY = this.H * 0.16 + yOffset;
+    const boxW = Math.min(380, this.W * 0.30);
+    const boxX = this.W - boxW - Math.max(40, this.W * 0.04);
+    const boxY = this.H * 0.18 + yOffset;
+    const pad = 28;
 
     ctx.save();
     ctx.globalAlpha = alpha;
@@ -602,41 +617,117 @@ class HeroCarousel {
       ctx.globalAlpha *= Math.max(0.2, 1 - blur * 0.15);
     }
 
-    // Watermark number
+    // ===== PREMIUM GLASS CARD =====
+    const cardW = boxW + pad * 2;
+    const cardH = 175;
+    const cardX = boxX - pad;
+    const cardY = boxY - pad + 5;
+    const r = 18;
+
+    // Outer shadow
     ctx.save();
-    ctx.font = `800 ${Math.min(120, this.W * 0.09)}px Inter, sans-serif`;
-    ctx.fillStyle = 'rgba(0, 212, 255, 0.035)';
-    ctx.textAlign = 'right';
-    ctx.fillText(`0${this.current + 1}`, boxX + boxW + 8, boxY + 70);
+    ctx.shadowColor = 'rgba(0,0,0,0.50)';
+    ctx.shadowBlur = 40;
+    ctx.shadowOffsetY = 12;
+    ctx.beginPath();
+    this.roundRect(ctx, cardX, cardY, cardW, cardH, r);
+    ctx.fillStyle = 'rgba(7, 11, 20, 0.01)';
+    ctx.fill();
     ctx.restore();
 
+    // Card background
+    ctx.save();
+    ctx.beginPath();
+    this.roundRect(ctx, cardX, cardY, cardW, cardH, r);
+    ctx.fillStyle = 'rgba(7, 11, 20, 0.52)';
+    ctx.fill();
+    ctx.restore();
+
+    // Gradient border
+    ctx.save();
+    ctx.beginPath();
+    this.roundRect(ctx, cardX, cardY, cardW, cardH, r);
+    const bGrad = ctx.createLinearGradient(cardX, cardY, cardX + cardW, cardY + cardH);
+    bGrad.addColorStop(0, 'rgba(0, 212, 255, 0.35)');
+    bGrad.addColorStop(0.35, 'rgba(0, 212, 255, 0.10)');
+    bGrad.addColorStop(0.65, 'rgba(0, 212, 255, 0.10)');
+    bGrad.addColorStop(1, 'rgba(0, 212, 255, 0.35)');
+    ctx.strokeStyle = bGrad;
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+    ctx.restore();
+
+    // Inner top glow
+    ctx.save();
+    ctx.beginPath();
+    this.roundRect(ctx, cardX + 2, cardY + 2, cardW - 4, 50, [r-2, r-2, 0, 0]);
+    const glowGrad = ctx.createLinearGradient(cardX, cardY, cardX, cardY + 50);
+    glowGrad.addColorStop(0, 'rgba(0, 212, 255, 0.10)');
+    glowGrad.addColorStop(1, 'rgba(0, 212, 255, 0)');
+    ctx.fillStyle = glowGrad;
+    ctx.fill();
+    ctx.restore();
+
+    // Left accent bar
+    ctx.save();
+    ctx.fillStyle = 'rgba(0, 212, 255, 0.55)';
+    ctx.shadowColor = 'rgba(0, 212, 255, 0.40)';
+    ctx.shadowBlur = 12;
+    ctx.fillRect(cardX + pad, cardY + pad + 42, 3, 36);
+    ctx.restore();
+
+    // Bottom subtle line
+    ctx.save();
+    ctx.fillStyle = 'rgba(0, 212, 255, 0.12)';
+    ctx.fillRect(cardX + pad, cardY + cardH - 4, 45, 1.5);
+    ctx.restore();
+
+    // Decorative dot
+    ctx.save();
+    const dotGrad = ctx.createRadialGradient(
+      cardX + cardW - 16, cardY + 16, 0,
+      cardX + cardW - 16, cardY + 16, 6
+    );
+    dotGrad.addColorStop(0, 'rgba(0, 212, 255, 0.80)');
+    dotGrad.addColorStop(1, 'rgba(0, 212, 255, 0)');
+    ctx.fillStyle = dotGrad;
+    ctx.beginPath();
+    ctx.arc(cardX + cardW - 16, cardY + 16, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // ===== TEXT CONTENT =====
+    const textX = boxX + 12;
+    const textY = boxY;
+
     // Service label
+    ctx.save();
     ctx.font = '600 10px Inter, sans-serif';
     ctx.textAlign = 'left';
-    ctx.fillStyle = 'rgba(0, 212, 255, 0.75)';
-    ctx.fillText(`USŁUGA 0${this.current + 1} / 0${this.services.length}`, boxX, boxY + 12);
+    ctx.fillStyle = 'rgba(0, 212, 255, 0.90)';
+    ctx.shadowColor = 'rgba(0,0,0,0.70)';
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetY = 2;
+    ctx.fillText(`USŁUGA 0${this.current + 1} / 0${this.services.length}`, textX, textY + 10);
+    ctx.restore();
 
-    // Title with text-shadow
-    const titleSize = Math.min(24, this.W * 0.020);
+    // Title
+    ctx.save();
+    const titleSize = Math.min(28, this.W * 0.024);
     ctx.font = `800 ${titleSize}px Inter, sans-serif`;
     ctx.fillStyle = '#fff';
     ctx.textAlign = 'left';
-    ctx.shadowColor = 'rgba(0,0,0,0.7)';
-    ctx.shadowBlur = 16;
-    ctx.shadowOffsetY = 3;
-    ctx.fillText(svc.title, boxX, boxY + 44);
-    ctx.shadowBlur = 0;
-    ctx.shadowOffsetY = 0;
-
-    // Accent line
-    ctx.fillStyle = 'rgba(0, 212, 255, 0.6)';
-    ctx.fillRect(boxX, boxY + 54, 40, 1.5);
+    ctx.shadowColor = 'rgba(0,0,0,0.85)';
+    ctx.shadowBlur = 20;
+    ctx.shadowOffsetY = 4;
+    ctx.fillText(svc.title, textX, textY + 46);
+    ctx.restore();
 
     // Description
     if (!this._cacheValid) {
-      const descSize = Math.min(12, this.W * 0.010);
+      const descSize = Math.min(13, this.W * 0.011);
       ctx.font = `400 ${descSize}px Inter, sans-serif`;
-      const maxW = boxW;
+      const maxW = boxW - 20;
       const words = svc.description.split(' ');
       let line = '', lines = [];
       for (const word of words) {
@@ -653,27 +744,31 @@ class HeroCarousel {
       this._cacheValid = true;
     }
 
-    const descSize = Math.min(12, this.W * 0.010);
+    ctx.save();
+    const descSize = Math.min(13, this.W * 0.011);
     ctx.font = `400 ${descSize}px Inter, sans-serif`;
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.70)';
-    let descY = boxY + 78;
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.78)';
+    ctx.shadowColor = 'rgba(0,0,0,0.60)';
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetY = 2;
+    let descY = textY + 78;
     for (const line of this._cachedDescLines) {
-      ctx.fillText(line, boxX, descY);
-      descY += 18;
+      ctx.fillText(line, textX, descY);
+      descY += 20;
     }
+    ctx.restore();
 
-    // Vertical dots
+    // Vertical dots (moved to right edge of card)
     const dotR = 3;
-    const dotGap = 12;
-    const dotsY = boxY + 130;
-    const dotsX = boxX + boxW - 4;
+    const dotGap = 14;
+    const dotsY = cardY + cardH / 2 - ((this.services.length - 1) * dotGap) / 2;
+    const dotsX = cardX + cardW - 14;
 
     for (let i = 0; i < this.services.length; i++) {
       const isActive = i === this.current;
       const dotY = dotsY + i * dotGap;
       if (isActive) {
-        ctx.fillStyle = 'rgba(0, 212, 255, 0.25)';
-        ctx.fillRect(dotsX - 16, dotY - 0.5, 14, 1);
+        ctx.save();
         const dg = ctx.createRadialGradient(dotsX, dotY, 0, dotsX, dotY, dotR * 3);
         dg.addColorStop(0, 'rgba(0, 212, 255, 0.5)');
         dg.addColorStop(1, 'rgba(0, 212, 255, 0)');
@@ -685,17 +780,36 @@ class HeroCarousel {
         ctx.beginPath();
         ctx.arc(dotsX, dotY, dotR, 0, Math.PI * 2);
         ctx.fill();
+        ctx.restore();
       } else {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.10)';
+        ctx.save();
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
         ctx.beginPath();
         ctx.arc(dotsX, dotY, dotR * 0.6, 0, Math.PI * 2);
         ctx.fill();
+        ctx.restore();
       }
     }
 
     ctx.restore();
   }
 
+  // Helper: rounded rectangle
+  roundRect(ctx, x, y, w, h, r) {
+    if (typeof r === 'number') r = [r, r, r, r];
+    ctx.moveTo(x + r[0], y);
+    ctx.lineTo(x + w - r[1], y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r[1]);
+    ctx.lineTo(x + w, y + h - r[2]);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r[2], y + h);
+    ctx.lineTo(x + r[3], y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r[3]);
+    ctx.lineTo(x, y + r[0]);
+    ctx.quadraticCurveTo(x, y, x + r[0], y);
+    ctx.closePath();
+  }
+
+  drawLoader
   drawLoader(ctx) {
     const cx = this.W / 2, cy = this.H / 2;
     const t = this.time / 1000;

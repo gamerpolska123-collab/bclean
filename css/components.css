@@ -699,6 +699,7 @@
   pointer-events: none;
   opacity: 0;
   animation: scrollIndicatorFadeIn 1s ease 2s forwards;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.90), 0 0 40px rgba(0,0,0,0.60);
 }
 .hero-scroll-indicator svg {
   width: 20px;

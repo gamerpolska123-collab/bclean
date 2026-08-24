@@ -89,18 +89,6 @@
 }
 .nav__link:hover { color:var(--c-accent); text-shadow:0 0 20px var(--c-accent-glow); }
 .nav__link:hover::after { width:100%; }
-.header__cta {
-  padding:14px 30px; background:var(--g-accent);
-  color:var(--c-primary); font-size:0.78rem; font-weight:var(--fw-700);
-  text-transform:uppercase; letter-spacing:1.5px;
-  border-radius:50px; transition:all var(--t-base);
-  box-shadow:var(--sh-accent);
-}
-.header__cta:hover {
-  transform:translateY(-3px);
-  box-shadow:0 8px 30px rgba(0,212,255,0.45);
-}
-
 /* Mobile menu toggle */
 .menu-toggle {
   display:none; flex-direction:column; gap:5px;
@@ -192,7 +180,7 @@
   line-height: 1.1;
 }
 .hero-brand__name {
-  font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+  font-size: 55px;
   font-weight: var(--fw-800);
   letter-spacing: -0.5px;
   color: #fff;
